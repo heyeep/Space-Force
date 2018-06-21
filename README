@@ -1,0 +1,11 @@
+* Cloning
+  # Change directory into folder where projects are kept
+  $ cd schoolg
+  # Clone the repo
+  $ git clone https://gitlab.com/cs4310/spaceforce.git
+* Compile
+  $ cd src
+  $ javac SpaceForceGame.java
+* Run
+  $ cd src
+  $ java SpaceForceGame
