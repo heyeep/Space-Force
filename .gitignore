@@ -1,0 +1,9 @@
+# Ignore .class files
+*.class
+
+# Ignore MaGit backup files
+*~
+
+# Ignore macOS DS_Store files
+*.DS_Store
+.DS_Store
