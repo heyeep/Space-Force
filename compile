@@ -1,0 +1,3 @@
+javac -d build/ src/*java src/systems/window/*java \
+                src/systems/scenes/*java \
+                src/model/*java
