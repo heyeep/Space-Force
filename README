@@ -4,8 +4,7 @@
   # Clone the repo
   $ git clone https://gitlab.com/cs4310/spaceforce.git
 * Compile
-  $ cd src
-  $ javac SpaceForceGame.java
+  # Inside spaceforce/ folder
+  $ ./compile
 * Run
-  $ cd src
-  $ java SpaceForceGame
+  $ ./run
