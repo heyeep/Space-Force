@@ -1,0 +1,50 @@
+* Node
+** Atom
+*** Turf
+    # Non movable
+**** Background
+**** Foreground
+*** Mob
+    # Playable and Non playable
+**** Player
+**** Invader
+*** Object
+**** Projectile
+**** Items
+** Layer
+    # Can ignore this for now
+** Icon
+    # Essentially a wrapper
+    # for swing's graphic's engine
+* Window
+  # Wrapper for JFrame
+** Scene
+  # Wrapper for JPanel
+*** StartScene
+*** GameScene
+*** EndScene
+* Game Mechanics
+** Menu
+*** Start
+**** Level 1
+**** Level 2
+**** Level 3
+**** Level 4
+**** Level 5: Boss?
+**** Death
+***** Main Menu
+***** Replay
+***** Exit
+*** Scoreboard
+**** Server
+**** Local
+*** Exit
+** GameLoop
+*** startCycle()
+    creates new Thread();
+    start loop
+*** ()
+    updateScene()
+*** updateScene()
+    scene.update();
+    scene.draw();
