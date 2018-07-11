@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication10;
 
 /**
  *
@@ -34,11 +33,11 @@ public class Weak_Invader extends Invader {
     }
 
     public void draw() {
-        
+
     }
 
     public void resize() {
-        
+
     }
 
     // TODO: Draw for Invader
