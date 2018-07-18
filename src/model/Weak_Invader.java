@@ -12,10 +12,11 @@ public class Weak_Invader extends Invader {
     int speed; //Speed at which the invader travels at, units: Pixels  
    public Weak_Invader() {
         super();
-        this.name = "WeakInvader";
+        this.name = "Weak Invader";
         hp = 20;
         maxHp = 100;
         speed = 5;
+        this.init();
     }
 
     public Weak_Invader(String _name) {
@@ -30,6 +31,7 @@ public class Weak_Invader extends Invader {
     public void init() {
         System.out.println("Player.init()");
         this.setCoord(10, 10);
+        this.setText(this.name);
     }
 
     public void draw() {

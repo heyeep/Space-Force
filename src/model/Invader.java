@@ -14,7 +14,7 @@ public abstract class Invader extends Mob {
     }
 
     public void init() {
-        System.out.println("Player.init()");
+        System.out.println("Invader.init()");
         this.setCoord(10, 10);
     }
 
