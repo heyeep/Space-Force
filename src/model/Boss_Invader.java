@@ -12,13 +12,12 @@ public class Boss_Invader extends Invader {
     public Boss_Invader() {
         super();
         this.name = "BossInvader";
-        hp = 100;
-        maxHp = 100;
-        speed = 30;
+        this.init();
     }
 
     public Boss_Invader(String _name) {
         super(_name);
+        this.init();
     }
 
     public Boss_Invader(String _name, String _description) {
@@ -29,6 +28,9 @@ public class Boss_Invader extends Invader {
     public void init() {
         System.out.println("Player.init()");
         this.setCoord(10, 10);
+        this.hp = 100;
+        this.maxHp = 100;
+        this.speed = 30;
     }
 
     public void draw() {
