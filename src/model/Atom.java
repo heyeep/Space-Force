@@ -22,6 +22,8 @@ public abstract class Atom extends JLabel {
     protected int velX;
     protected int velY;
 
+    protected int speed;
+
     public Atom() {
         this.name = "None";
         this.description = "None";
@@ -67,13 +69,13 @@ public abstract class Atom extends JLabel {
         this.setCoord(_x, (int) this.getLocation().getY());
     }
 
-    public void setX(double _x) {
-        this.setCoord((int) _x, (int) this.getLocation().getY());
-    }
+    // public void setX(double _x) {
+    //     this.setCoord((int) _x, (int) this.getLocation().getY());
+    // }
 
-    public int getX() {
-        return (int) this.getLocation().getX();
-    }
+    // public int getX() {
+    //     return (int) this.getLocation().getX();
+    // }
 
     public double getFloatX() {
         return this.getLocation().getX();
@@ -114,6 +116,14 @@ public abstract class Atom extends JLabel {
 
     public int getVelY() {
         return this.velY;
+    }
+
+    public void setSpeed(int _speed) {
+        this.speed = _speed;
+    }
+
+    public int getSpeed() {
+        return this.speed;
     }
 
     // TODO: Fix Image

@@ -9,8 +9,7 @@
  * @author Mark Chang
  */
 public class Boss_Invader extends Invader {
-    int speed; //Speed at which the invader travels at, units: Pixels  
-   public Boss_Invader() {
+    public Boss_Invader() {
         super();
         this.name = "BossInvader";
         hp = 100;
@@ -33,11 +32,9 @@ public class Boss_Invader extends Invader {
     }
 
     public void draw() {
-        
     }
 
     public void resize() {
-        
     }
 
     // TODO: Draw for Invader
