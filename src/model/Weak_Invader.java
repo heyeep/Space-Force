@@ -9,18 +9,15 @@
  * @author Mark Chang
  */
 public class Weak_Invader extends Invader {
-    int speed; //Speed at which the invader travels at, units: Pixels  
-   public Weak_Invader() {
+    public Weak_Invader() {
         super();
         this.name = "Weak Invader";
-        hp = 20;
-        maxHp = 100;
-        speed = 5;
         this.init();
     }
 
     public Weak_Invader(String _name) {
         super(_name);
+        this.init();
     }
 
     public Weak_Invader(String _name, String _description) {
@@ -29,8 +26,11 @@ public class Weak_Invader extends Invader {
     }
 
     public void init() {
-        System.out.println("Player.init()");
+        System.out.println("Weak Invader.init()");
         this.setCoord(10, 10);
+        this.hp = 20;
+        this.maxHp = 100;
+        this.speed = 5;
         this.setText(this.name);
     }
 
