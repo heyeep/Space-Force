@@ -1,3 +1,4 @@
+package javaapplication10;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,26 +13,21 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import javax.swing.Timer;
-
 /**
  *
  * @author Hoang
  */
-
 public class GameScene extends Scene {
     // The Player
     private Player player;
+    private Projectile bullet;
     //Timer timer;
     
     private boolean hasBegun = false;
 
-    private MonsterSpawner spawner;
-
-    private Invader[] invaders;
-
     int x = 0, y = 0, velx =0, vely =0;
     int xline=0,yline=0;
-     
+    
     JLabel lb1 = new JLabel();
     JLabel lb2 = new JLabel();
     JLabel lb3 = new JLabel();
@@ -43,13 +39,17 @@ public class GameScene extends Scene {
     JLabel lb32 = new JLabel();
     JLabel lb42 = new JLabel();
     JLabel lb52 = new JLabel();
-
+    
     JLabel lb13 = new JLabel();
     JLabel lb23 = new JLabel();
     JLabel lb33 = new JLabel();
     JLabel lb43 = new JLabel();
     JLabel lb53 = new JLabel();
-
+    JLabel background = new JLabel();
+    //JLabel bullet = new JLabel();
+    
+    
+    
     public GameScene() {
         super();
         System.out.println("GameScene");
@@ -73,18 +73,18 @@ public class GameScene extends Scene {
     public void init() {
         System.out.println("GameScene.init()");
         this.timer = new Timer(20, this);
-        this.spawner = new MonsterSpawner(this);
-        this.invaders = new Invader[100];
         this.hasBegun = !this.hasBegun;
         this.addPlayer();
+        this.bullet = new Projectile(200,200);
         setFocusable(true);
         addKeyListener(this);
         setFocusTraversalKeysEnabled(false);
         this.timer.start();
+//        this.player.setX(270);
+//        this.player.setY(330);
+//        this.player.draw();
 
-        lb1.setIcon(new ImageIcon("../../../assets/sprites/enemy_4030.png"));
-        //lb1.setIcon(new ImageIcon("enemy_4030.png"));
-        lb1.setText("Invader");
+        lb1.setIcon(new ImageIcon("enemy_4030.png"));
         lb1.setVisible(true);
         this.add(lb1);
         
@@ -143,6 +143,14 @@ public class GameScene extends Scene {
         lb53.setIcon(new ImageIcon("enemy_4030.png"));
         lb53.setVisible(true);
         this.add(lb53);
+        
+        bullet.setIcon(new ImageIcon("bullet.png"));
+        bullet.setVisible(true);
+        this.add(bullet);
+        
+        background.setIcon(new ImageIcon("space2.gif"));
+        background.setVisible(true);
+        this.add(background);
     }
 
     public void addPlayer() {
@@ -150,7 +158,7 @@ public class GameScene extends Scene {
         String username = JOptionPane.showInputDialog("Enter your name: ");
         this.player = new Player(username);
         this.add(this.player);
-        
+        //this.add(this.bullet);
     }
 
     public void draw(Graphics g) {
@@ -161,8 +169,9 @@ public class GameScene extends Scene {
             //            g.drawImage(this.player.getImage(), this.player.getX(),
             //                        this.player.getY(),50, 50, this);
             this.player.draw();
-            g.setColor(Color.RED);
-            g.fillRect(this.player.getX(),this.player.getY(),50,30);
+            this.bullet.draw();
+            //g.setColor(Color.RED);
+            //g.fillRect(this.player.getX(),this.player.getY(),50,30);
         }
     }
 
@@ -170,6 +179,21 @@ public class GameScene extends Scene {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         this.draw(g);
+      
+//        g.setColor(Color.BLUE);
+//        g.fillRect(xline,yline,50,30);
+//
+//        g.setColor(Color.BLACK);
+//        g.fillRect(xline+120,yline,50,30);
+//
+//        g.setColor(Color.GREEN);
+//        g.fillRect(xline+240,yline,50,30);
+//
+//        g.setColor(Color.ORANGE);
+//        g.fillRect(xline+360,yline,50,30);
+//
+//        g.setColor(Color.MAGENTA);
+//        g.fillRect(xline+480,yline,50,30);
     }
 
     @Override
@@ -177,32 +201,35 @@ public class GameScene extends Scene {
         //System.out.println("LOL");
         if (this.hasBegun) {
             if(this.player.getLocation().y==5)
-                {
-                    this.player.setX(270);
-                    this.player.setY(330);
-                    lb1.setLocation(xline+10,yline);
-                    lb2.setLocation(xline+120,yline);
-                    lb3.setLocation(xline+240,yline);
-                    lb4.setLocation(xline+360,yline);
-                    lb5.setLocation(xline+490,yline);
+            {
+                this.player.setX(270);
+                this.player.setY(330);
+                this.bullet.setX(999);
+                this.bullet.setY(999);
+                lb1.setLocation(xline+0,yline);
+                lb2.setLocation(xline+45,yline);
+                lb3.setLocation(xline+90,yline);
+                lb4.setLocation(xline+135,yline);
+                lb5.setLocation(xline+180,yline);
                 
-                    lb12.setLocation(xline+70,yline-50);
-                    lb22.setLocation(xline+90,yline-50);
-                    lb32.setLocation(xline+290,yline-50);
-                    lb42.setLocation(xline+330,yline-50);
-                    lb52.setLocation(xline+400,yline-50);
+                lb12.setLocation(xline+0,yline-50);
+                lb22.setLocation(xline+45,yline-50);
+                lb32.setLocation(xline+90,yline-50);
+                lb42.setLocation(xline+135,yline-50);
+                lb52.setLocation(xline+180,yline-50);
                 
-                    lb13.setLocation(xline+0,yline-100);
-                    lb23.setLocation(xline+110,yline-100);
-                    lb33.setLocation(xline+190,yline-100);
-                    lb43.setLocation(xline+290,yline-100);
-                    lb53.setLocation(xline+430,yline-100);
-                }
+                lb13.setLocation(xline+0,yline-100);
+                lb23.setLocation(xline+45,yline-100);
+                lb33.setLocation(xline+90,yline-100);
+                lb43.setLocation(xline+135,yline-100);
+                lb53.setLocation(xline+180,yline-100);
+                background.setLocation(xline-100, yline-100);
+            }
             if (this.player.getLocation().getX() < 0) {
                 this.player.setVelX(0);
                 this.player.setX(0);
             } else if (this.player.getX() > 530
-                       && this.player.getVelX() > 0) {
+                && this.player.getVelX() > 0) {
                 this.player.setVelX(0);
                 this.player.setX(534);
             }
@@ -219,70 +246,110 @@ public class GameScene extends Scene {
             //        }
             //x += velx;
             yline += 1;
-            lb1.setLocation(xline+10,yline);
-            lb2.setLocation(xline+120,yline);
-            lb3.setLocation(xline+240,yline);
-            lb4.setLocation(xline+360,yline);
-            lb5.setLocation(xline+490,yline);
+            lb1.setLocation(xline+0,yline);
+            lb2.setLocation(xline+115,yline);
+            lb3.setLocation(xline+260,yline);
+            lb4.setLocation(xline+405,yline);
+            lb5.setLocation(xline+550,yline);
             
-            lb12.setLocation(xline+70,yline-50);
-            lb22.setLocation(xline+90,yline-50);
-            lb32.setLocation(xline+290,yline-50);
-            lb42.setLocation(xline+330,yline-50);
-            lb52.setLocation(xline+400,yline-50);
+            lb12.setLocation(xline+0,yline-50);
+            lb22.setLocation(xline+115,yline-50);
+            lb32.setLocation(xline+260,yline-50);
+            lb42.setLocation(xline+405,yline-50);
+            lb52.setLocation(xline+550,yline-50);
             
             lb13.setLocation(xline+0,yline-100);
-            lb23.setLocation(xline+110,yline-100);
-            lb33.setLocation(xline+190,yline-100);
-            lb43.setLocation(xline+290,yline-100);
-            lb53.setLocation(xline+430,yline-100);
-
+            lb23.setLocation(xline+115,yline-100);
+            lb33.setLocation(xline+260,yline-100);
+            lb43.setLocation(xline+405,yline-100);
+            lb53.setLocation(xline+550,yline-100);
+            System.out.print("BULLETVELOCITY    " + this.bullet.getVelY());
+            double tmp = this.bullet.getY() + this.bullet.getVelY();
+            System.out.print("  Y IS SUPPOSED TO BE:  "+ tmp);
+            System.out.print("  BULLET Y LOCATIONS    "+this.bullet.getLocation().getY());
+            this.bullet.setY(this.bullet.getY() + this.bullet.getVelY());
+            if(this.bullet.getY() <= 0)
+            {
+                this.bullet.setVelocity(0,0);
+                this.bullet.setY(999);
+                //this.bullet.setVisible(false);
+            }
+            //lb1.setLocation(100, 100);
+            //y += vely;
+            //           System.out.println("X Coord: "
+            //                               + this.player.getLocation().getX());
+            //System.out.println("LOL");
             repaint();
         }
     }
     @Override
     public void keyPressed(KeyEvent e) {
+      //System.out.println("LOL");
         if (this.hasBegun) {
             int code = e.getKeyCode();
-            switch (code) {
-            case KeyEvent.VK_DOWN:
-                this.player.setVelocity(0, 1);
-                break;
-            case KeyEvent.VK_UP:
-                this.player.setVelocity(0, -1);
-                break;
-            case KeyEvent.VK_LEFT:
-                this.player.setVelocity(-1, 0);
-                break;
-            case KeyEvent.VK_RIGHT:
-                this.player.setVelocity(1, 0);
-                break;
-            default:
-                break;
-            }
+          switch (code) {
+              //case KeyEvent.VK_DOWN:
+              //    this.player.setVelocity(0, 1);
+              //    break;
+              //case KeyEvent.VK_UP:
+              //    this.player.setVelocity(0, -1);
+              //    break;
+              case KeyEvent.VK_LEFT:
+                  this.player.setVelocity(-5, 0);
+                  if(this.bullet.getVelY() == 0)
+                    this.bullet.setVelocity(-5, 0);
+                  else
+                    this.bullet.setVelocity(0,-5);
+                  break;
+              case KeyEvent.VK_RIGHT:
+                  this.player.setVelocity(5, 0);
+                  if(this.bullet.getVelY() == 0)
+                    this.bullet.setVelocity(5, 0);
+                  else
+                    this.bullet.setVelocity(0,-5);
+                  break;
+              case KeyEvent.VK_SPACE:
+                  this.player.setVelocity(0, 0);
+                  this.bullet.setVelocity(0, -5);
+                  System.out.print("BULLETVELOCITY  " + this.bullet.getVelX());
+                  System.out.println(this.bullet.getY());
 
-            System.out.println(this.player.getX() + " + " + this.player.getVelX());
-            System.out.println(this.player.getY() + " + " + this.player.getVelY());
-            this.player.setX(this.player.getX() + this.player.getVelX());
-            this.player.setY(this.player.getY() + this.player.getVelY());
-            this.testSpawnMonster();
-            repaint();
+                    System.out.print("BULLETVELOCITY    " + this.bullet.getVelY());
+                    double tmp = this.bullet.getY() + this.bullet.getVelY();
+                    System.out.print("  Y IS SUPPOSED TO BE:  "+ tmp);
+                    System.out.print("  BULLET Y LOCATIONS :  "+this.bullet.getLocation().getY());
+                    if(this.bullet.getY() > 500)
+                    {
+                        this.bullet.setX(this.player.getX());
+                        this.bullet.setY(this.player.getY());
+                    }
+                    //}
+                    repaint();
+              default:
+                  break;
+          }
+          
+        System.out.println(this.player.getX() + " + " + this.player.getVelX());
+        System.out.println(this.player.getY() + " + " + this.player.getVelY());
+        this.player.setX(this.player.getX() + this.player.getVelX());
+        this.player.setY(this.player.getY() + this.player.getVelY());
+        //this.bullet.setX(this.bullet.getX() + this.bullet.getVelX());
+        //this.bullet.setY(this.bullet.getY() + this.bullet.getVelY());
+        //System.out.println(this.player.getX() + " + " + this.player.getVelX());
+        //System.out.println(this.player.getY() + " + " + this.player.getVelY());
+            //        y += vely;
+        repaint();
         }
     }
 
-
-
+   
     @Override
     public void keyTyped(KeyEvent e) {
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
         //            velx=0;
         //            vely=0;
-    }
-
-    public void testSpawnMonster() {
-        spawner.spawnMonster(new Weak_Invader(), 50, 50);
     }
 }
