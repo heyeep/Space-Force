@@ -25,8 +25,6 @@ public class Player extends Mob {
         this.setCoord(100, 100);
         this.setText(this.name);
         this.setImage("../../assets/sprites/Potatoes.png");
-        //        this.setImage("./Potatoes.png");
-        //        this.setImage("~/School/summer/cs4310/spaceforce/assets/sprites/Potatoes.png");
 
         System.out.println("Icon Width: " + getIcon().getIconWidth());
         System.out.println("Icon Height: " + getIcon().getIconHeight());
