@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
  *
  * @author Nave
  */
-public class Projectile extends Object{
+public class Projectile extends Object {
 
     private double x;
     private double y;
@@ -46,6 +46,6 @@ public class Projectile extends Object{
     }
 
     @Override
-    public void draw() {
+    public void draw(Graphics g) {
     }
 }

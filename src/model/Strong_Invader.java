@@ -1,3 +1,6 @@
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -38,6 +41,16 @@ public class Strong_Invader extends Invader {
 
     public void resize() {
         
+    }
+
+    public void setupIcon() {
+        this.setIcon(new ImageIcon("../../../assets/sprites/enemy_4030.png"));
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        this.draw(g);
     }
 
     // TODO: Draw for Invader

@@ -52,8 +52,14 @@ public abstract class Atom extends JLabel {
     }
 
     public abstract void init();
-    public abstract void draw();
+    public abstract void draw(Graphics g);
     public abstract void resize();
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        this.draw(g);
+    }
 
     public void setCoord(int _x, int _y) {
         this.setLocation(_x, _y);

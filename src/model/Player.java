@@ -30,10 +30,15 @@ public class Player extends Mob {
         System.out.println("Icon Height: " + getIcon().getIconHeight());
     }
 
-    public void draw() {
+    public void draw(Graphics g) {
     }
 
     public void resize() {
+    }
+   @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        this.draw(g);
     }
 
 }
