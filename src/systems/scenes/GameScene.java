@@ -250,10 +250,10 @@ public class GameScene extends Scene {
             //}
             //x += velx;
             yline += 1;
-            System.out.print("BULLETVELOCITY" + this.bullet.getVelY());
+            //            System.out.print("BULLETVELOCITY" + this.bullet.getVelY());
             double tmp = this.bullet.getY() + this.bullet.getVelY();
-            System.out.print("Y IS SUPPOSED TO BE:"+ tmp);
-            System.out.print("BULLET Y LOCATIONS"+this.bullet.getLocation().getY());
+            //            System.out.print("Y IS SUPPOSED TO BE:"+ tmp);
+            //            System.out.print("BULLET Y LOCATIONS"+this.bullet.getLocation().getY());
             this.bullet.setY(this.bullet.getY() + this.bullet.getVelY());
             if(this.bullet.getY() <= 0)
                 {
@@ -298,13 +298,13 @@ public class GameScene extends Scene {
             case KeyEvent.VK_SPACE:
                 this.player.setVelocity(0, 0);
                 this.bullet.setVelocity(0, -5);
-                System.out.print("BULLETVELOCITY" + this.bullet.getVelX());
+                //               System.out.print("BULLETVELOCITY" + this.bullet.getVelX());
                 System.out.println(this.bullet.getY());
 
-                System.out.print("BULLETVELOCITY" + this.bullet.getVelY());
+                //                System.out.print("BULLETVELOCITY" + this.bullet.getVelY());
                 double tmp = this.bullet.getY() + this.bullet.getVelY();
-                System.out.print("Y IS SUPPOSED TO BE:"+ tmp);
-                System.out.print("BULLET Y LOCATIONS :"+this.bullet.getLocation().getY());
+                //                System.out.print("Y IS SUPPOSED TO BE:"+ tmp);
+                //                System.out.print("BULLET Y LOCATIONS :"+this.bullet.getLocation().getY());
                 if(this.bullet.getY() > 500)
                     {
                         this.bullet.setX(this.player.getX());
