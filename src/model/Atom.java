@@ -63,12 +63,12 @@ public abstract class Atom extends JLabel {
 
     public void setCoord(int _x, int _y) {
         this.setLocation(_x, _y);
-        this.printCoords();
+        //        this.printCoords();
     }
 
     public void setCoord(double _x, double _y) {
         this.setLocation((int) _x, (int) _y);
-        this.printCoords();
+        //        this.printCoords();
     }
 
     public void setX(int _x) {
@@ -132,13 +132,11 @@ public abstract class Atom extends JLabel {
         return this.speed;
     }
 
-    // TODO: Fix Image
     public void setImage(ImageIcon _icon) {
         this.setIcon(_icon);
     }
 
     public void setImage(String _fileName) {
-        System.out.println("Atom.init(): " + _fileName);
         this.setIcon(new ImageIcon(_fileName));
     }
 
