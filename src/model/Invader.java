@@ -19,8 +19,7 @@ public abstract class Invader extends Mob {
     public void init() {
         System.out.println("Invader.init()");
         this.setCoord(10, 10);
-        this.setText(this.name);
-        this.setupIcon();
+        //        this.setText(this.name);
     }
 
     public void draw(Graphics g) {
@@ -30,15 +29,9 @@ public abstract class Invader extends Mob {
     public void resize() {
     }
 
-    public abstract void setupIcon();
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         this.draw(g);
     }
-
-    // TODO: Draw for Invader
-    // Have to fix the changing of icons
-    // inside Atom first
 }

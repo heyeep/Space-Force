@@ -34,8 +34,8 @@ public class Weak_Invader extends Invader {
         this.hp = 20;
         this.maxHp = 100;
         this.speed = 5;
-        this.setupIcon();
-        this.setText(this.name);
+        //        this.setText(this.name);
+        this.setImage("assets/sprites/enemy_4030.png");
         this.setVisible(true);
     }
 
@@ -46,20 +46,9 @@ public class Weak_Invader extends Invader {
 
     }
 
-    public void setupIcon() {
-        //        this.setIcon(new ImageIcon("../../../assets/sprites/enemy_4030.png"));
-        this.setIcon(new ImageIcon("enemy_4030.png"));
-
-    }
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         this.draw(g);
     }
-
-    // TODO: Draw for Invader
-    // Have to fix the changing of icons
-    // inside Atom first
 }
-

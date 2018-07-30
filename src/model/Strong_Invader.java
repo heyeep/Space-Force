@@ -12,8 +12,8 @@ import java.awt.Graphics;
  * @author Mark Chang
  */
 public class Strong_Invader extends Invader {
-    int speed; //Speed at which the invader travels at, units: Pixels  
-   public Strong_Invader() {
+    int speed; //Speed at which the invader travels at, units: Pixels
+    public Strong_Invader() {
         super();
         this.name = "StrongInvader";
         hp = 40;
@@ -36,15 +36,9 @@ public class Strong_Invader extends Invader {
     }
 
     public void draw() {
-        
     }
-
+q
     public void resize() {
-        
-    }
-
-    public void setupIcon() {
-        this.setIcon(new ImageIcon("../../../assets/sprites/enemy_4030.png"));
     }
 
     @Override
@@ -53,8 +47,4 @@ public class Strong_Invader extends Invader {
         this.draw(g);
     }
 
-    // TODO: Draw for Invader
-    // Have to fix the changing of icons
-    // inside Atom first
 }
-

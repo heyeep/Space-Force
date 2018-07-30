@@ -17,30 +17,34 @@ public class Projectile extends Object {
     private double x;
     private double y;
 
-    public Projectile(double x, double y)
-    {
-        this.x = x;
-        this.y = y;
+    public Projectile() {
+        this.setCoord(274, 400);
+        this.init();
     }
 
-    public Projectile() {}
+    public Projectile(double _x, double _y)
+    {
+        this.setCoord(_x, _y);
+        this.init();
+        this.printCoords();
+    }
 
     public void tick()
     {
         y -= 10;
     }
 
-    public void init(){
+    public void init() {
         System.out.print("Projectile.init()");
-        this.setCoord(274, 400);
-        this.setImage("bullet.png");
+        this.setImage("assets/sprites/bullet.png");
+        this.setVisible(true);
         System.out.println("Projectile Width: " + getIcon().getIconWidth());
         System.out.println("Projectile Height: " + getIcon().getIconHeight());
     }
 
-    public void resize(){    }
+    public void resize() {}
 
-    void remove( ) {
+    void remove() {
         //draw();
         //revalidate();
     }
