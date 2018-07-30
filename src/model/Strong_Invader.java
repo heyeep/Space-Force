@@ -1,3 +1,6 @@
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,8 +12,8 @@
  * @author Mark Chang
  */
 public class Strong_Invader extends Invader {
-    int speed; //Speed at which the invader travels at, units: Pixels  
-   public Strong_Invader() {
+    int speed; //Speed at which the invader travels at, units: Pixels
+    public Strong_Invader() {
         super();
         this.name = "StrongInvader";
         hp = 40;
@@ -33,15 +36,15 @@ public class Strong_Invader extends Invader {
     }
 
     public void draw() {
-        
     }
-
+q
     public void resize() {
-        
     }
 
-    // TODO: Draw for Invader
-    // Have to fix the changing of icons
-    // inside Atom first
-}
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        this.draw(g);
+    }
 
+}

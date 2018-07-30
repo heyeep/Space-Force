@@ -1,3 +1,6 @@
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -31,17 +34,12 @@ public class Boss_Invader extends Invader {
         this.hp = 100;
         this.maxHp = 100;
         this.speed = 30;
-        this.setText(this.name);
+        //        this.setText(this.name);
     }
 
-    public void draw() {
+    public void draw(Graphics g) {
     }
 
     public void resize() {
     }
-
-    // TODO: Draw for Invader
-    // Have to fix the changing of icons
-    // inside Atom first
 }
-
