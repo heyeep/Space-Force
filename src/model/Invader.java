@@ -1,3 +1,6 @@
+import javax.swing.ImageIcon;
+import java.awt.Graphics;
+
 public abstract class Invader extends Mob {
     public Invader() {
         super();
@@ -16,16 +19,19 @@ public abstract class Invader extends Mob {
     public void init() {
         System.out.println("Invader.init()");
         this.setCoord(10, 10);
-        this.setText(this.name);
+        //        this.setText(this.name);
     }
 
-    public void draw() {
+    public void draw(Graphics g) {
+        System.out.println("Cake");
     }
 
     public void resize() {
     }
 
-    // TODO: Draw for Invader
-    // Have to fix the changing of icons
-    // inside Atom first
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        this.draw(g);
+    }
 }
