@@ -22,6 +22,8 @@ public class Player extends Mob {
 
     public void init() {
         System.out.println("Player.init()");
+        this.setHp(Mob.DEFAULT_MAX_HP);
+        System.out.println("HP: " + this.getHp());
         this.setCoord(100, 100);
         this.setText(this.name);
         this.setImage("assets/sprites/ship_4030.png");
