@@ -25,7 +25,7 @@ public  class Turf extends Atom {
 
     public void init() {
 
-        this.setCoord(10, 10);
+        this.setCoord(0, 0);
         this.setVisible(true);
     }
 
