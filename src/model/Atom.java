@@ -75,13 +75,13 @@ public abstract class Atom extends JLabel {
         this.setCoord(_x, (int) this.getLocation().getY());
     }
 
-    // public void setX(double _x) {
-    //     this.setCoord((int) _x, (int) this.getLocation().getY());
-    // }
+    public void setX(double _x) {
+        this.setCoord((int) _x, (int) this.getLocation().getY());
+    }
 
-    // public int getX() {
-    //     return (int) this.getLocation().getX();
-    // }
+    public int getX() {
+        return (int) this.getLocation().getX();
+    }
 
     public double getFloatX() {
         return this.getLocation().getX();
@@ -137,6 +137,7 @@ public abstract class Atom extends JLabel {
     }
 
     public void setImage(String _fileName) {
+        System.out.println("setImage: " +  _fileName);
         this.setIcon(new ImageIcon(_fileName));
     }
 
