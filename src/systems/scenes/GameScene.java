@@ -24,7 +24,6 @@ import java.net.URL;
  * @author Hoang
  */
 public class GameScene extends Scene {
-    // The Player
     Random rand;
     private MonsterSpawner spawner;
     private Player player;
@@ -35,6 +34,7 @@ public class GameScene extends Scene {
     int scores = 0;
 
     private boolean hasBegun = false;
+    private boolean restartGameAfterDeath = true;
 
     int x1,x2,x3,x4,x5;
     int x12,x22,x32,x42,x52;
@@ -49,19 +49,25 @@ public class GameScene extends Scene {
     public GameScene() {
         super();
         System.out.println("GameScene");
-        this.init();
+        this.startTimeAndInit();
     }
 
     public GameScene(String _name) {
         super(_name);
         System.out.println("GameScene(String _name)");
-        this.init();
+        this.startTimeAndInit();
     }
 
     public GameScene(int _width, int _height) {
         super(_width, _height);
-        System.out.println("GameScene(int _width, int _height)");
+        //        System.out.println("GameScene(int _width, int _height)");
+        this.startTimeAndInit();
+    }
+
+    public void startTimeAndInit() {
+        this.timer = new Timer(20, this);
         this.init();
+        this.timer.start();
     }
 
     @Override
@@ -69,7 +75,6 @@ public class GameScene extends Scene {
         System.out.println("GameScene.init()");
         so = new Sound();
         this.rand = new Random();
-        this.timer = new Timer(20, this);
         this.spawner = new MonsterSpawner(this);
         this.invaders = new Vector<Invader>();
         this.hasBegun = !this.hasBegun;
@@ -81,7 +86,6 @@ public class GameScene extends Scene {
         addKeyListener(this);
         setFocusTraversalKeysEnabled(false);
         this.setVisible(true);
-        this.timer.start();
 
         this.playerhp.setForeground(Color.CYAN);
         this.playerhp.setVisible(true);
@@ -133,6 +137,22 @@ public class GameScene extends Scene {
     //     }while(x13 > 550 || x23 > 550 || x33 > 550 || x43 > 550 || x53 >550);
     // }
 
+    public void reset() {
+        this.rand = null;
+        this.spawner = null;
+        this.player = null;
+        this.bullet = null;
+        this.background = null;
+        this.invaders.clear();
+        this.invaders = null;
+        this.so = null;
+        this.scores = 0;
+        this.hasBegun = false;
+
+        //        JLabel playerhp = new JLabel();
+        //        JLabel scoreplayer = new JLabel();
+    }
+
     public void addPlayer() {
         //        String username = JOptionPane.showInputDialog("Enter your name: ");
         this.player = new Player("Test");
@@ -155,6 +175,9 @@ public class GameScene extends Scene {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.hasBegun) {
+            if (this.player.getHp() <= 0) {
+                end();
+            }
             this.moveInvaders();
             if(this.player.getLocation().getY()!=330)
             {
@@ -187,7 +210,6 @@ public class GameScene extends Scene {
             {
                 this.bullet.setVelocity(0,0);
                 this.bullet.setY(999);
-                //this.bullet.setVisible(false);
             }
 
             Rectangle[] arrRLabels= new Rectangle[15];
@@ -373,4 +395,35 @@ public class GameScene extends Scene {
         }
         return false;
     }
+
+    public void end() {
+        System.out.println("Game has ended.");
+        // GameScene nextScene = new GameScene(Window.DEFAULT_WIDTH,
+        //                                  Window.DEFAULT_HEIGHT);
+        // nextScene.revalidate();
+        // nextScene.repaint();
+        // this.reset();
+        // this.getWindow().switchScene(this, nextScene);
+        if (this.restartGameAfterDeath) {
+            this.restartGame();
+        } else {
+            // TODO: Go back to MainMenu Scene
+            // MainScene nextScene = new MainScene(Window.DEFAULT_WIDTH,
+            //                                  Window.DEFAULT_HEIGHT);
+            // this.removeAll();
+            // this.revalidate();
+            // this.repaint();
+            // this.getWindow().switchScene(this, nextScene);
+        }
+    }
+
+    public void restartGame() {
+        System.out.println("Restarting game...");
+        this.removeAll();
+        this.reset();
+        this.revalidate();
+        this.repaint();
+        this.init();
+    }
+
 }

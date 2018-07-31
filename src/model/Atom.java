@@ -137,7 +137,7 @@ public abstract class Atom extends JLabel {
     }
 
     public void setImage(String _fileName) {
-        System.out.println("setImage: " +  _fileName);
+        //       System.out.println("setImage: " +  _fileName);
         this.setIcon(new ImageIcon(_fileName));
     }
 

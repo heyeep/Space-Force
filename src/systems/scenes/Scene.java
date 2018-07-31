@@ -12,6 +12,7 @@ import javax.swing.*;
 import java.util.Vector;
 
 public abstract class Scene extends JPanel implements ActionListener, KeyListener {
+    private Window window;
     private String name;
 
     Timer timer;
@@ -41,6 +42,8 @@ public abstract class Scene extends JPanel implements ActionListener, KeyListene
     }
 
     public abstract void init();
+    public abstract void reset();
+    public abstract void end();
 
     public String toString() {
         return this.name;
@@ -69,5 +72,13 @@ public abstract class Scene extends JPanel implements ActionListener, KeyListene
     @Override
     public void keyReleased(KeyEvent e) {
         repaint();
+    }
+
+    public void setWindow(Window _window) {
+        this.window = _window;
+    }
+
+    public Window getWindow() {
+        return this.window;
     }
 }

@@ -9,4 +9,10 @@ public class StartScene extends Scene {
 
     public void init() {
     }
+
+    public void reset() {
+    }
+
+    public void end() {
+    }
 }

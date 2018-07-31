@@ -28,7 +28,7 @@ public class Weak_Invader extends Invader {
     }
 
     public void init() {
-        System.out.println("Weak Invader.init()");
+        //        System.out.println("Weak Invader.init()");
         this.name = "Weak Invader";
         this.hp = 20;
         this.maxHp = 100;

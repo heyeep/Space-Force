@@ -9,4 +9,11 @@ public class MainScene extends Scene {
 
     public void init() {
     }
+
+    public void reset() {
+    }
+
+    public void end() {
+    }
+
 }
