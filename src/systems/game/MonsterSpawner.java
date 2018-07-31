@@ -1,4 +1,5 @@
 import java.util.Vector;
+import java.util.Random;
 
 public class MonsterSpawner {
     private GameScene scene;
@@ -9,6 +10,18 @@ public class MonsterSpawner {
 
     MonsterSpawner(GameScene _scene) {
         this.scene = _scene;
+    }
+
+    public void randomWeakInvader(int maxX, int y) {
+        int randX = this.scene.rand.nextInt(maxX) + 1;
+        Weak_Invader invader = new Weak_Invader();
+        invader.setCoord(randX, y);
+        invader.setLocation(1,0);
+        //        invader.setX(randX);
+        invader.printCoords();
+        invader.setVisible(true);
+        scene.addInvader(invader);
+        scene.add(invader);
     }
 
     public void weakInvader(int x, int y) {
@@ -23,6 +36,13 @@ public class MonsterSpawner {
         int x_position = startX;
         while(numberOfMonsters > 0) {
             this.weakInvader(x_position, startY);
+            numberOfMonsters--;
+        }
+    }
+
+    public void rowOfRandomWeakInvaders(int maxX, int startY, int numberOfMonsters) {
+        while(numberOfMonsters > 0) {
+            this.randomWeakInvader(maxX, startY);
             numberOfMonsters--;
         }
     }
