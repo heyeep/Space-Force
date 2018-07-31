@@ -29,6 +29,10 @@ public abstract class Invader extends Mob {
     public void resize() {
     }
 
+    public void moveDown() {
+        this.setCoord(this.getX(), this.getY() + this.getSpeed());
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
