@@ -18,7 +18,7 @@ public abstract class Scene extends JPanel implements ActionListener, KeyListene
     Timer timer;
 
     public Scene() {
-        super(new FlowLayout(FlowLayout.LEADING));
+        //        super(new FlowLayout(FlowLayout.LEADING));
         this.name = "Default Scene";
         addKeyListener(this);
         setFocusable(true);
@@ -26,7 +26,7 @@ public abstract class Scene extends JPanel implements ActionListener, KeyListene
     }
 
     public Scene(String _name) {
-        super(new FlowLayout(FlowLayout.LEADING));
+        //        super(new FlowLayout(FlowLayout.LEADING));
         this.name = _name;
         addKeyListener(this);
         setFocusable(true);
@@ -34,7 +34,7 @@ public abstract class Scene extends JPanel implements ActionListener, KeyListene
     }
 
     public Scene(int _width, int _height) {
-        super(new FlowLayout(FlowLayout.LEADING));
+        //        super(new FlowLayout(FlowLayout.LEADING));
         this.setSize(_width, _height);
         addKeyListener(this);
         setFocusable(true);

@@ -49,22 +49,22 @@ public class GameScene extends Scene {
     public GameScene() {
         super();
         System.out.println("GameScene");
-        this.startTimeAndInit();
+        this.startTimerAndInit();
     }
 
     public GameScene(String _name) {
         super(_name);
         System.out.println("GameScene(String _name)");
-        this.startTimeAndInit();
+        this.startTimerAndInit();
     }
 
     public GameScene(int _width, int _height) {
         super(_width, _height);
         //        System.out.println("GameScene(int _width, int _height)");
-        this.startTimeAndInit();
+        this.startTimerAndInit();
     }
 
-    public void startTimeAndInit() {
+    public void startTimerAndInit() {
         this.timer = new Timer(20, this);
         this.init();
         this.timer.start();

@@ -3,19 +3,19 @@ import javax.swing.*;
 public class Window extends JFrame {
     static final int DEFAULT_WIDTH = 600;
     static final int DEFAULT_HEIGHT = 400;
-    static final String title = "Space Force";
+    static final String title = "Space 0Force";
 
     private int width = DEFAULT_WIDTH;
     private int height = DEFAULT_HEIGHT;
 
     public Window() {
-        System.out.println("Window");
+        //        System.out.println("Window");
         this.setSize(width, height);
         this.init();
     }
 
     public Window(int _width, int _height) {
-        System.out.println("Window");
+        //        System.out.println("Window");
         this.setSize(_width, _height);
         this.width = _width;
         this.height = _height;
@@ -23,7 +23,7 @@ public class Window extends JFrame {
     }
 
     public Window(int _width, int _height, Scene _scene) {
-        System.out.println("Window");
+        //        System.out.println("Window");
         this.setSize(_width, _height);
         this.width = _width;
         this.height = _height;
@@ -33,7 +33,7 @@ public class Window extends JFrame {
     }
 
     public void addScene(Scene _scene) {
-        System.out.println("Window.addScene(Scene _scene)");
+        //        System.out.println("Window.addScene(Scene _scene)");
         getContentPane().add(_scene);
     }
 

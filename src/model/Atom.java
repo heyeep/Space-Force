@@ -45,10 +45,24 @@ public abstract class Atom extends JLabel {
         this.description = _description;
     }
 
+    public Atom(String _name, String _description, int _x, int _y) {
+        this.name = _name;
+        this.description = _description;
+        this.setCoord(_x, _y);
+    }
+
     public Atom(String _name, String _description, String _fileName) {
         this.name = _name;
         this.description = _description;
         this.setIcon(new ImageIcon(_fileName));
+    }
+
+    public Atom(String _name, String _description, String _fileName,
+                int _x, int _y) {
+        this.name = _name;
+        this.description = _description;
+        this.setIcon(new ImageIcon(_fileName));
+        this.setCoord(_x, _y);
     }
 
     public abstract void init();
@@ -149,5 +163,13 @@ public abstract class Atom extends JLabel {
         System.out.println("Coords: ("
                            + this.getLocation().getX() + ", "
                            + this.getLocation().getY() + ")");
+    }
+
+    public void setName(String _name) {
+        this.name = _name;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }
