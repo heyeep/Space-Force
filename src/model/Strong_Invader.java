@@ -37,7 +37,7 @@ public class Strong_Invader extends Invader {
 
     public void draw() {
     }
-q
+
     public void resize() {
     }
 

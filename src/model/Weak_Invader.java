@@ -30,11 +30,9 @@ public class Weak_Invader extends Invader {
     public void init() {
         System.out.println("Weak Invader.init()");
         this.name = "Weak Invader";
-        this.setCoord(10, 10);
         this.hp = 20;
         this.maxHp = 100;
-        this.speed = 5;
-        //        this.setText(this.name);
+        this.speed = 2;
         this.setImage("assets/sprites/enemy_4030.png");
         this.setVisible(true);
     }
