@@ -33,7 +33,8 @@ public class Player extends Mob {
 
     public void resize() {
     }
-   @Override
+
+    @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         this.draw(g);

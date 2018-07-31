@@ -28,4 +28,19 @@ public abstract class Mob extends Atom {
         this.hp = this.maxHp = _hp;
     }
 
+    public void setHp(int _hp) {
+        this.hp = _hp;
+    }
+
+    public int getHp() {
+        return this.hp;
+    }
+
+    public void setMaxHp(int _maxHp) {
+        this.maxHp = _maxHp;
+    }
+
+    public int getMaxHp() {
+        return this.maxHp;
+    }
 }

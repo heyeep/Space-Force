@@ -25,12 +25,19 @@ public abstract class Scene extends JPanel implements ActionListener, KeyListene
     }
 
     public Scene(String _name) {
+        super(new FlowLayout(FlowLayout.LEADING));
         this.name = _name;
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
     }
 
     public Scene(int _width, int _height) {
-        super();
-        setSize(_width, _height);
+        super(new FlowLayout(FlowLayout.LEADING));
+        this.setSize(_width, _height);
+        addKeyListener(this);
+        setFocusable(true);
+        setFocusTraversalKeysEnabled(false);
     }
 
     public abstract void init();
