@@ -27,7 +27,7 @@ public class Window extends JFrame {
         this.setSize(_width, _height);
         this.width = _width;
         this.height = _height;
-        this.add(_scene);
+        this.setContentPane(_scene);
         this.init();
     }
 
