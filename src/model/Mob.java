@@ -5,8 +5,8 @@ public abstract class Mob extends Atom {
     public int hp;
     public int maxHp;
 
-    private final int DEFAULT_MAX_HP = 3;
-    private final int DEFAULT_HP = 3;
+    public static final int DEFAULT_MAX_HP = 3;
+    public static final int DEFAULT_HP = 3;
 
     public Mob() {
         super("Default Mob", "None");
