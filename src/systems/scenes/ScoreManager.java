@@ -16,9 +16,17 @@ import java.time.LocalDateTime;
 public class ScoreManager {
     public static void main(String[] args)
 	{
-		//Perform actions here
-		String [][] tmp = getScores();
-		System.out.print(tmp[0][1]);
+		/*Instructions:
+		 insertScore(String score) example input parameter:
+			insertScore("0,Mark,0,1,40"); 1st and 3rd parameters are 0. 2nd parameter 
+				is the username, 4th parameter is the level they played on, last parameter
+				is the player score. So I earned 40 points on easy (lv1) and my name is Mark.
+				My program will fill in the 1st and 3rd parameter automatically.
+				
+			getScores(); Returns a 2d array, first dimension is the different entries, 2nd dimension is the values
+						Index: 0=rank, 1=name, 2=date, 3=gamemode, 4=score
+		*/		
+		insertScore("0,Mark,0,1,40"); //Playername Mark, difficulty 1, score 40
 	}
 	public ScoreManager()
 	{
