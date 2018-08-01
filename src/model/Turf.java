@@ -24,9 +24,12 @@ public  class Turf extends Atom {
     }
 
     public void init() {
-
-        this.setCoord(0, 0);
+        System.out.println("Cake");
+        this.setCoord(50, 50);
+        this.setImage("assets/sprites/ship_4030.png");
+        this.setText(this.name);
         this.setVisible(true);
+        this.printCoords();
     }
 
     public void draw(Graphics g) {

@@ -35,11 +35,11 @@ public class Projectile extends Object {
     }
 
     public void init() {
-        System.out.print("Projectile.init()");
+        //        System.out.print("Projectile.init()");
         this.setImage("assets/sprites/bullet.png");
         this.setVisible(true);
-        System.out.println("Projectile Width: " + getIcon().getIconWidth());
-        System.out.println("Projectile Height: " + getIcon().getIconHeight());
+        //        System.out.println("Projectile Width: " + getIcon().getIconWidth());
+        //        System.out.println("Projectile Height: " + getIcon().getIconHeight());
     }
 
     public void resize() {}

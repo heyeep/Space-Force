@@ -1,6 +1,4 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import javax.swing.ImageIcon;
 
 public class Player extends Mob {
@@ -21,13 +19,12 @@ public class Player extends Mob {
     }
 
     public void init() {
-        System.out.println("Player.init()");
+        //        System.out.println("Player.init()");
         this.setHp(Mob.DEFAULT_MAX_HP);
-        System.out.println("HP: " + this.getHp());
-        this.setCoord(100, 100);
+        //        System.out.println("HP: " + this.getHp());
         this.setText(this.name);
         this.setImage("assets/sprites/ship_4030.png");
-
+        this.initBounds();
     }
 
     public void draw(Graphics g) {
