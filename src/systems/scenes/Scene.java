@@ -1,12 +1,9 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.FlowLayout;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import java.awt.*;
 import javax.swing.*;
 
 import java.util.Vector;
@@ -32,6 +29,8 @@ public abstract class Scene extends JLayeredPane implements ActionListener, KeyL
     }
 
     public void initAll() {
+        Dimension panelSize = new Dimension(this.getWidth(), this.getHeight());
+        this.setPreferredSize(panelSize);
         this.initListeners();
         this.setLayout(null);
     }

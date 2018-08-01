@@ -3,16 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication10;
 
 import javax.swing.ImageIcon;
 import javax.swing.*;
+import java.awt.*;
 
 
 /**
  *
  * @author Huy
- * keeps track of  
+ * keeps track of
  * setVisible
  * get and set int coordinates
  */
@@ -21,43 +21,69 @@ public class Explosion extends JLabel{
     private int _frame;
     private int _slowFactor;
     private int _COUNT_BETWEEN_FRAMES;
-    private int _x, _y;
-    
-    public Explosion(int x, int y, int countBetweenFrames){
+    private boolean _active;
+
+    public Explosion(int countBetweenFrames){
+        this._COUNT_BETWEEN_FRAMES = countBetweenFrames;
+        this.resetFrame();
+        setVisible(true);
+        this.setActive(false);
+    }
+
+    public boolean isActive(){
+        return _active;
+    }
+
+    public void setActive(boolean flag){
+        _active = flag;
+        if (!flag) {
+            hideIt();
+        }
+    }
+
+    private void hideIt(){
+        this.setLocation(999, 999);
+    }
+
+    public void resetFrame(){
         this._frame = 1;
         this.setFrame(this._frame);
-        this._COUNT_BETWEEN_FRAMES = countBetweenFrames;
         this._slowFactor = this._COUNT_BETWEEN_FRAMES;
-        this._x = x;
-        this._y = y;
-        
-        setVisible(true);
-
     }
 
     private void setFrame(int frame){
-        if (frame>0 && frame <= MAX_FRAME){
-            setIcon(new ImageIcon("bubble_explo" + frame + ".png"));
-            setLocation(this._x, this._y);
-        }
-    }
-    
-    // returnFlag:  true    : explosion is already done
-    //              false   : there is more explosion ahead 
-    public boolean nextFrame(){
-        if(_frame < MAX_FRAME){
-            if (this._slowFactor > 0){
-                --this._slowFactor;
-            } else {
-                this._slowFactor = _COUNT_BETWEEN_FRAMES;
-                _frame++;
-                setFrame(_frame);
-            }
-            return false;
-        } else {
-            setVisible(false);
-            return true;
-        }
-    }
-}
 
+        if(frame>0 && frame<=MAX_FRAME){
+            //            System.out.println("---------------   bubble_explo" + frame + ".png ------------------");
+            setIcon(new ImageIcon("assets/sprites/Bubble_Explo/bubble_explo" + frame + ".png"));
+        }
+    }
+
+    public void nextFrame(){
+        if (this.isActive()) {
+            if(_frame < MAX_FRAME){
+                if (this._slowFactor > 0){
+                    --this._slowFactor;
+                } else {
+                    this._slowFactor = _COUNT_BETWEEN_FRAMES;
+                    _frame++;
+                    setFrame(_frame);
+                }
+            } else {
+                //                System.out.println("HIDE EXPLOSION");
+                this.setActive(false);
+                this.setFrame(1);
+            }
+        } else {
+            this.hideIt();
+        }
+    }
+
+    // Hiep
+    public void initBounds() {
+        Dimension size;
+        size = this.getPreferredSize();
+        this.setBounds(this.getX(), this.getY(), size.width, size.height);
+    }
+    // End
+}

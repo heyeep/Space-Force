@@ -44,6 +44,10 @@ public class GameScene extends Scene {
     JLabel playerhp = new JLabel();
     JLabel scoreplayer = new JLabel();
 
+    // Huy
+    Vector<Explosion> explosions = new Vector<Explosion>();
+    Explosion explosionTest = new Explosion(3);
+
     public GameScene() {
         super();
     }
@@ -97,6 +101,13 @@ public class GameScene extends Scene {
         testSpawnMonsterRow();
         WindowManager.drawBackground(this);
 
+        // Huy
+        Explosion e = new Explosion(3);
+        e.initBounds();
+        explosions.add(e);
+        this.add(e, new Integer(Constants.LAYER_PROJECTILE));
+        this.explosionTest.setLocation(100, 100);
+        this.add(explosionTest, new Integer(Constants.LAYER_PROJECTILE));
     }
 
     // public void MakeRandomMonster(){
@@ -163,6 +174,12 @@ public class GameScene extends Scene {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.hasBegun) {
+            // Huy
+            this.explosionTest.setLocation(100, 100);
+            this.explosionTest.nextFrame();
+            Explosion exp1 = explosions.firstElement();
+            exp1.nextFrame();
+            // End
             if (areInvadersDead()) {
                 this.soundManager.WonGame();
                 win();
@@ -212,13 +229,26 @@ public class GameScene extends Scene {
                 if (!invader.isDead()) {
                     if(invader.getBounds().intersects(this.bullet.getBounds()))
                         {
+                            // Huy
+                            Explosion exp = explosions.firstElement();
+                            exp.setLocation(invader.getX(), invader.getY());
+                            exp.setActive(true);
+                            // End
+                            // Hiep
+                            Runnable changeStateOfExplosionWhichShouldReallyBeInsideTheExplosionClass = () -> {
+                                setVisible(true);
+                            };
+                            changeStateOfExplosionWhichShouldReallyBeInsideTheExplosionClass.run();
+                            Thread thread = new Thread(changeStateOfExplosionWhichShouldReallyBeInsideTheExplosionClass);
+                            thread.start();
+
                             this.bullet.setVelocity(0,0);
                             this.bullet.setY(999);
+
                             this.remove(invader);
                             this.invadersAlive--;
                             invader.setDead();
                             invader = null;
-
                             System.gc();
                             this.soundManager.MonsterDied();
                             this.scores++;
@@ -379,10 +409,10 @@ public class GameScene extends Scene {
     public void end() {
         System.out.println("Game has ended.");
         try {
-            this.drawGameOver();
+            //            this.drawGameOver();
             Thread.sleep(10000);
-            this.soundManager.stopSound();
-            this.remove(this.gameOver);
+            //            this.soundManager.stopSound();
+            //            this.remove(this.gameOver);
         } catch (InterruptedException ex) {
         }
 
@@ -410,15 +440,29 @@ public class GameScene extends Scene {
 
     public void drawGameOver() {
         Dimension size;
-        this.gameOver = new Hud("GAME OVER", "Game over message", 200, 50, this);
-        this.gameOver.setFont(new Font("Tahoma", 0, 72));
-        this.gameOver.setForeground(Color.WHITE);
-        this.gameOver.setText(this.gameOver.getName());
-        size = this.gameOver.getPreferredSize();
-        this.setBounds((Window.DEFAULT_WIDTH / 2) - (size.width / 2),
-                                 (Window.DEFAULT_HEIGHT / 2) - (size.height),
-                                 200, 400);
-        this.add(this.gameOver, new Integer(Constants.LAYER_HUD));
+        // this.gameOver = new Hud("GAME OVER", "Game over message", 200, 50, this);
+        // this.gameOver.setFont(new Font("Tahoma", 0, 72));
+        // this.gameOver.setForeground(Color.WHITE);
+        // this.gameOver.setText(this.gameOver.getName());
+        // System.out.println(this.gameOver.getName());
+        // size = this.gameOver.getPreferredSize();
+        // //        this.gameOver.setLocation((Window.DEFAULT_WIDTH / 2) - (size.width / 2),
+        // //                               (Window.DEFAULT_HEIGHT / 2) - (size.height));
+        // this.gameOver.setBounds(this.gameOver.getX(),
+        //                         this.gameOver.getY(),
+        //                         size.width, size.height);
+        // this.add(this.gameOver, new Integer(Constants.LAYER_HUD));
+
+        // JLabel go = new JLabel("Game Over");
+        // go.setText("Game Over");
+        // size = go.getPreferredSize();
+        // go.setForeground(Color.CYAN);
+        // go.setVisible(true);
+        // go.setLocation(20,20);
+        // go.setBounds(15,
+        //              540,
+        //                100, 40);
+        // this.add(go, new Integer(Constants.LAYER_HUD));
     }
 
 }
