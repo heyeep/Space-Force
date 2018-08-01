@@ -46,19 +46,15 @@ public class GameScene extends Scene {
 
     public GameScene() {
         super();
-        //        System.out.println("GameScene");
     }
 
     public GameScene(String _name) {
         super(_name);
-        //        System.out.println("GameScene(String _name)");
     }
 
     public GameScene(int _width, int _height) {
         super(_width, _height);
         this.setName("Game Scene");
-        this.setLayout(null);
-        //        System.out.println("GameScene(int _width, int _height)");
     }
 
     public void startTimerAndInit() {
@@ -69,7 +65,6 @@ public class GameScene extends Scene {
 
     @Override
     public void init() {
-        //        System.out.println("GameScene.init()");
         so = new Sound();
         this.rand = new Random();
         this.spawner = new MonsterSpawner(this);
@@ -78,15 +73,10 @@ public class GameScene extends Scene {
         this.scoreManager = new ScoreManager();
         this.hasBegun = !this.hasBegun;
         this.addPlayer();
-        //        this.background = new Turf("Background", "None", "assets/sprites/ship_4030.png");
-        //        this.background.initBounds();
+
         this.bullet = new Projectile(200, 200);
         this.bullet.initBounds();
-        this.setFocusable(true);
         this.requestFocusInWindow();
-        this.addKeyListener(this);
-        this.setFocusTraversalKeysEnabled(false);
-        this.setVisible(true);
 
         this.playerhp.setForeground(Color.CYAN);
         this.playerhp.setVisible(true);
@@ -98,15 +88,16 @@ public class GameScene extends Scene {
         this.scoreplayer.setForeground(Color.CYAN);
         this.scoreplayer.setVisible(true);
         this.scoreplayer.setBounds(540, 15, 100, 40);
-        this.add(scoreplayer);
 
-        //       this.add(this.background);
         this.add(this.scoreplayer);
         this.add(this.bullet);
 
         //        MakeRandomMonster();
         //        testSpawnRandomMonsters();
+
         testSpawnMonsterRow();
+        WindowManager.drawBackground(this);
+
     }
 
     // public void MakeRandomMonster(){
@@ -149,9 +140,6 @@ public class GameScene extends Scene {
         this.hasBegun = false;
         this.invadersAlive = 0;
         this.scores = 0;
-
-        //        JLabel playerhp = new JLabel();
-        //        JLabel scoreplayer = new JLabel();
     }
 
     public void addPlayer() {
@@ -184,17 +172,17 @@ public class GameScene extends Scene {
             }
             this.moveInvaders();
             if(this.player.getLocation().getY()!=330)
-            {
-                this.player.setX(270);
-                this.player.setY(330);
-                this.bullet.setX(999);
-                this.bullet.setY(999);
-            }
+                {
+                    this.player.setX(270);
+                    this.player.setY(330);
+                    this.bullet.setX(999);
+                    this.bullet.setY(999);
+                }
             if (this.player.getLocation().getX() < 0) {
                 this.player.setVelX(0);
                 this.player.setX(0);
             } else if (this.player.getX() > 530
-                && this.player.getVelX() > 0) {
+                       && this.player.getVelX() > 0) {
                 this.player.setVelX(0);
                 this.player.setX(534);
             }
@@ -203,17 +191,17 @@ public class GameScene extends Scene {
             yline += 1;
 
             if(yline>550)
-            {
-                yline=0;
-                testSpawnRandomMonster();
-            }
+                {
+                    yline=0;
+                    testSpawnRandomMonster();
+                }
 
             this.bullet.setY(this.bullet.getY() + this.bullet.getVelY());
             if(this.bullet.getY() <= 0)
-            {
-                this.bullet.setVelocity(0,0);
-                this.bullet.setY(999);
-            }
+                {
+                    this.bullet.setVelocity(0,0);
+                    this.bullet.setY(999);
+                }
 
             Rectangle[] arrRLabels= new Rectangle[invaders.size()];
             for(int i=0; i<invaders.size(); i++){
@@ -238,30 +226,13 @@ public class GameScene extends Scene {
                         }
                     if(invader.getBounds().intersects(this.player.getBounds())){
                         this.player.setHp(this.player.getHp() - 2);
-                        //                    so.MonsterDied();
-                        // try {
-                        //     Thread.sleep(1000);
-                        // } catch (InterruptedException ex) {
-                        //     Logger.getLogger(GameScene.class.getName()).log(Level.SEVERE, null, ex);
-                        // }
-                        //                    so.PlayerDeath();
-                        //                    JOptionPane.showMessageDialog(null, "You died. Your Scores: "+ scores);
-                        /*
-                         * TODO: RESTART GAME
-                         * -------------------
-                         * Not sure how y'all want to do this
-                         * Could just auto restart the game
-                         * Which means resetting the entire map
-                         */
                     }
                 }
             }
             if(scores>14){
-                //                timer.stop();
                 JOptionPane.showMessageDialog(null, "You WON. Your Scores: "+ scores);
                 this.restartGame();
             }
-            //            System.out.println("Score: " + scores);
         }
     }
     @Override
@@ -269,34 +240,34 @@ public class GameScene extends Scene {
         if (this.hasBegun) {
             int code = e.getKeyCode();
             switch (code) {
-                case KeyEvent.VK_LEFT:
-                  this.player.setVelocity(-5, 0);
-                  if(this.bullet.getVelY() == 0)
+            case KeyEvent.VK_LEFT:
+                this.player.setVelocity(-5, 0);
+                if(this.bullet.getVelY() == 0)
                     this.bullet.setVelocity(-5, 0);
-                  else
+                else
                     this.bullet.setVelocity(0,-10);
-                  break;
-                case KeyEvent.VK_RIGHT:
-                  this.player.setVelocity(5, 0);
-                  if(this.bullet.getVelY() == 0)
+                break;
+            case KeyEvent.VK_RIGHT:
+                this.player.setVelocity(5, 0);
+                if(this.bullet.getVelY() == 0)
                     this.bullet.setVelocity(5, 0);
-                  else
+                else
                     this.bullet.setVelocity(0,-10);
-                  break;
-                case KeyEvent.VK_UP:
-                case KeyEvent.VK_SPACE:
-                  this.player.setVelocity(0, 0);
-                  this.bullet.setVelocity(0, -10);
-                    if(this.bullet.getY() > 500)
+                break;
+            case KeyEvent.VK_UP:
+            case KeyEvent.VK_SPACE:
+                this.player.setVelocity(0, 0);
+                this.bullet.setVelocity(0, -10);
+                if(this.bullet.getY() > 500)
                     {
                         this.bullet.setX(this.player.getX());
                         this.bullet.setY(this.player.getY());
                         //                        so.Shoot();
                     }
-              default:
-                  break;
-          }
-        this.player.setX(this.player.getX() + this.player.getVelX());
+            default:
+                break;
+            }
+            this.player.setX(this.player.getX() + this.player.getVelX());
 
         }
     }
@@ -386,7 +357,6 @@ public class GameScene extends Scene {
     }
 
     public boolean isInvaderOutOfBounds(Invader invader) {
-        //        System.out.println("HEIGHT: " + this.getHeight());
         if (invader.getY() >= this.getHeight()) {
             /*
              * TODO: SOUND EFFECTS
@@ -410,7 +380,6 @@ public class GameScene extends Scene {
         if (this.restartGameAfterDeath) {
             this.restartGame();
         } else {
-            // TODO: Go back to MainMenu Scene
             // MainScene nextScene = new MainScene(Window.DEFAULT_WIDTH,
             //                                  Window.DEFAULT_HEIGHT);
             // this.removeAll();
