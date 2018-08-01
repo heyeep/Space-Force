@@ -1,22 +1,15 @@
 import javax.swing.*;
 
 public class SpaceForceGame {
+    public static MainWindow mainWindow;
     public static void main(String args[]) {
         SwingUtilities.invokeLater(new Runnable() {
                 public void run() {
-                    // GameScene gScene = new GameScene(Window.DEFAULT_WIDTH,
-                    //                                  Window.DEFAULT_HEIGHT);
-                    // gScene.revalidate();
-                    // gScene.repaint();
-                    // Window window = new Window(Window.DEFAULT_WIDTH,
-                    //                            Window.DEFAULT_HEIGHT, gScene);
                     MainScene mScene = new MainScene(Window.DEFAULT_WIDTH,
                                                      Window.DEFAULT_HEIGHT);
-                    //                    Window window = new Window(Window.DEFAULT_WIDTH,
-                    //                                               Window.DEFAULT_HEIGHT, mScene);
                     mScene.revalidate();
                     mScene.repaint();
-                    MainWindow mWindow = new MainWindow(Window.DEFAULT_WIDTH,
+                    mainWindow = new MainWindow(Window.DEFAULT_WIDTH,
                                                         Window.DEFAULT_HEIGHT,
                                                         mScene);
                 }

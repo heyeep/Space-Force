@@ -19,23 +19,24 @@ public class MainWindow extends Window {
     JMenuItem helpInstructions;
     JMenuItem helpAbout;
     public MainWindow() {
-        System.out.println("Main Window");
+        //        System.out.println("Main Window");
         this.init();
     }
 
     public MainWindow(int _width, int _height) {
         super(_width, _height);
-        System.out.println("Main Window");
+        //        System.out.println("Main Window");
         this.init();
     }
 
     public MainWindow(int _width, int _height, Scene _scene) {
         super(_width, _height, _scene);
-        System.out.println("Main Window");
+        //        System.out.println("Main Window");
         this.init();
     }
 
     public void init() {
+        this.setName("Main Window");
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);

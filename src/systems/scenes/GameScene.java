@@ -48,20 +48,17 @@ public class GameScene extends Scene {
 
     public GameScene() {
         super();
-        System.out.println("GameScene");
-        this.startTimerAndInit();
+        //        System.out.println("GameScene");
     }
 
     public GameScene(String _name) {
         super(_name);
-        System.out.println("GameScene(String _name)");
-        this.startTimerAndInit();
+        //        System.out.println("GameScene(String _name)");
     }
 
     public GameScene(int _width, int _height) {
         super(_width, _height);
         //        System.out.println("GameScene(int _width, int _height)");
-        this.startTimerAndInit();
     }
 
     public void startTimerAndInit() {
@@ -82,9 +79,10 @@ public class GameScene extends Scene {
         //this.background = new Turf("Background", "None", "assets/sprites/space.gif");
         this.bullet = new Projectile(200, 200);
 
-        setFocusable(true);
-        addKeyListener(this);
-        setFocusTraversalKeysEnabled(false);
+        this.setFocusable(true);
+        this.requestFocusInWindow();
+        this.addKeyListener(this);
+        this.setFocusTraversalKeysEnabled(false);
         this.setVisible(true);
 
         this.playerhp.setForeground(Color.CYAN);
@@ -258,6 +256,7 @@ public class GameScene extends Scene {
     }
     @Override
     public void keyPressed(KeyEvent e) {
+        System.out.println("Cake");
         if (this.hasBegun) {
             int code = e.getKeyCode();
             switch (code) {

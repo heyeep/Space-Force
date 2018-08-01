@@ -12,8 +12,8 @@ import javax.swing.*;
 import java.util.Vector;
 
 public abstract class Scene extends JPanel implements ActionListener, KeyListener {
-    private Window window;
     private String name;
+    private Scene nextScene;
 
     Timer timer;
 
@@ -74,11 +74,11 @@ public abstract class Scene extends JPanel implements ActionListener, KeyListene
         repaint();
     }
 
-    public void setWindow(Window _window) {
-        this.window = _window;
+    public void setNextScene(Scene _nextScene) {
+        this.nextScene = _nextScene;
     }
 
-    public Window getWindow() {
-        return this.window;
+    public Scene getNextScene() {
+        return this.nextScene;
     }
 }

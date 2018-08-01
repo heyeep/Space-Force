@@ -16,6 +16,7 @@ public class MainScene extends Scene {
 
     public MainScene(int _width, int _height) {
         super(_width, _height);
+        this.setName("Main Scene");
         this.setLayout(null);
         this.init();
     }
@@ -29,6 +30,7 @@ public class MainScene extends Scene {
         this.add(startButton);
         this.add(scoreBoardButton);
         this.add(helpButton);
+        //        System.out.println(this.getWindow());
     }
 
     public void reset() {
@@ -38,7 +40,7 @@ public class MainScene extends Scene {
     }
 
     public void drawGameTitle(Dimension size) {
-        this.gameTitle = new Hud("SPACE FORCE", "Title", 200, 50);
+        this.gameTitle = new Hud("SPACE FORCE", "Title", 200, 50, this);
         this.gameTitle.setFont(new Font("Tahoma", 0, 72));
         this.gameTitle.setText(this.gameTitle.getName());
         size = gameTitle.getPreferredSize();
@@ -50,9 +52,13 @@ public class MainScene extends Scene {
 
     // Position numbers are honestly don't matter
     public void drawStartButton(Dimension size) {
-        this.startButton = new Hud("START", "Start button", 200, 100);
+        //        System.out.println("My Window: " + this.getWindow());
+        //        System.out.println("My Scene: " + this.getName());
+        this.startButton = new Hud("START", "Start button", 200, 100, this);
         this.startButton.setFont(new Font("Tahoma", 0, 24));
         this.startButton.setText(this.startButton.getName());
+        this.setNextScene(new GameScene (Window.DEFAULT_WIDTH,
+                                         Window.DEFAULT_HEIGHT));
         size = this.startButton.getPreferredSize();
         this.startButton.setBounds((Window.DEFAULT_WIDTH / 2) - (size.width / 2),
                                    (Window.DEFAULT_HEIGHT / 2) + (size.height),

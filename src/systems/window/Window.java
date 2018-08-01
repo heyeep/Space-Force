@@ -5,6 +5,7 @@ public class Window extends JFrame {
     static final int DEFAULT_HEIGHT = 400;
     static final String title = "Space 0Force";
 
+    private Scene scene;
     private int width = DEFAULT_WIDTH;
     private int height = DEFAULT_HEIGHT;
 
@@ -27,9 +28,8 @@ public class Window extends JFrame {
         this.setSize(_width, _height);
         this.width = _width;
         this.height = _height;
-        this.setContentPane(_scene);
+        this.setScene(_scene);
         this.init();
-        _scene.setWindow(this);
     }
 
     public void addScene(Scene _scene) {
@@ -48,7 +48,14 @@ public class Window extends JFrame {
         oldScene.revalidate();
         oldScene.repaint();
         getContentPane().remove(oldScene);
-        newScene.setWindow(this);
         this.setContentPane(newScene);
+    }
+
+    public void setScene(Scene _scene) {
+        this.scene = _scene;
+        this.setContentPane(_scene);
+    }
+    public Scene getScene() {
+        return this.scene;
     }
 }
