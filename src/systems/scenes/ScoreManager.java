@@ -8,7 +8,7 @@
 import java.io.*;
 import java.util.*;
 import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime;  
+import java.time.LocalDateTime;
 /**
  *
  * @author Mark Chang
@@ -80,7 +80,7 @@ public class ScoreManager {
 		{
 			if(i != 9)
 			{
-				scorelist[i+1] = scorelist[i]; 
+				scorelist[i+1] = scorelist[i];
 			}
 		}
 		if(insert <= 10)
@@ -124,7 +124,7 @@ public class ScoreManager {
 		{
 			for(int j = 0; j<5; j++)
 			{
-				scorelist[i][j] = "null";
+				scorelist[i][j] = "";
 			}
 		}
 		try{
@@ -133,7 +133,6 @@ public class ScoreManager {
 			int counter = 0;
 			while(line != null && counter < 10) //10 scores maximum
 			{
-				if(line != null)
 				{
 					String[] tmp = line.split(",");
 					scorelist[counter][0] = tmp[0];
