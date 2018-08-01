@@ -16,10 +16,8 @@ public class MonsterSpawner {
         int randX = this.scene.rand.nextInt(maxX) + 1;
         Weak_Invader invader = new Weak_Invader();
         invader.setCoord(randX, y);
-        invader.setLocation(1,0);
-        //        invader.setX(randX);
         invader.printCoords();
-        invader.setVisible(true);
+        invader.initBounds();
         scene.addInvader(invader);
         scene.add(invader, new Integer(Constants.LAYER_MOB));
     }

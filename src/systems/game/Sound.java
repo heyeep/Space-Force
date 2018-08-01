@@ -79,9 +79,9 @@ public class Sound {
         try {
             File soundFile = new File(BackgroundFile);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
-            backgroundMusic = AudioSystem.getClip();
-            backgroundMusic.open(audioIn);
-            backgroundMusic.start();
+            Clip clip = AudioSystem.getClip();
+            clip.open(audioIn);
+            clip.start();
         } 
         catch (UnsupportedAudioFileException e) {
             e.printStackTrace();

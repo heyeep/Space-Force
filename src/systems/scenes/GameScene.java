@@ -23,6 +23,7 @@ import java.net.URL;
  */
 public class GameScene extends Scene {
     Random rand;
+    private final int NUMBER_OF_MONSTERS = 5;
     private MonsterSpawner spawner;
     private Player player;
     private Projectile bullet;
@@ -73,7 +74,7 @@ public class GameScene extends Scene {
         this.rand = new Random();
         this.spawner = new MonsterSpawner(this);
         this.invaders = new Vector<Invader>();
-        this.invadersAlive = 20;
+        this.invadersAlive = NUMBER_OF_MONSTERS;
         this.scoreManager = new ScoreManager();
         this.hasBegun = !this.hasBegun;
         this.bullet = new Projectile(200, 200);
@@ -96,9 +97,9 @@ public class GameScene extends Scene {
         this.add(this.bullet, new Integer(Constants.LAYER_PROJECTILE));
 
         //        MakeRandomMonster();
-        //        testSpawnRandomMonsters();
+        testSpawnRandomMonsters();
 
-        testSpawnMonsterRow();
+        //        testSpawnMonsterRow();
         WindowManager.drawBackground(this);
 
         // Huy
@@ -181,8 +182,9 @@ public class GameScene extends Scene {
             exp1.nextFrame();
             // End
             if (areInvadersDead()) {
-                this.soundManager.WonGame();
-                win();
+                //                this.soundManager.WonGame();
+                //                win();
+                System.out.println("All monsters killed");
             }
             if (isPlayerDead()) {
                 this.soundManager.PlayerDeath();
@@ -272,14 +274,14 @@ public class GameScene extends Scene {
             int code = e.getKeyCode();
             switch (code) {
             case KeyEvent.VK_LEFT:
-                this.player.setVelocity(-5, 0);
+                this.player.setVelocity(-10, 0);
                 if(this.bullet.getVelY() == 0)
                     this.bullet.setVelocity(-5, 0);
                 else
                     this.bullet.setVelocity(0,-10);
                 break;
             case KeyEvent.VK_RIGHT:
-                this.player.setVelocity(5, 0);
+                this.player.setVelocity(10, 0);
                 if(this.bullet.getVelY() == 0)
                     this.bullet.setVelocity(5, 0);
                 else
@@ -314,7 +316,7 @@ public class GameScene extends Scene {
     }
 
     public void testSpawnRandomMonsters() {
-        spawner.rowOfRandomWeakInvaders(500, 50, 3);
+        spawner.rowOfRandomWeakInvaders(500, 50, NUMBER_OF_MONSTERS);
     }
 
     public void testSpawnRandomMonster() {
@@ -330,7 +332,11 @@ public class GameScene extends Scene {
     }
 
     public boolean areInvadersDead() {
-        if (this.hasBegun && invadersAlive == 0) {
+        if (this.hasBegun && this.invadersAlive == 0) {
+            System.out.println("Next wave...");
+            this.invadersAlive = NUMBER_OF_MONSTERS;
+            this.testKillAllInvaders();
+            this.testSpawnRandomMonsters();
             return true;
         }
         return false;
@@ -361,7 +367,7 @@ public class GameScene extends Scene {
     }
 
     public void testKillAllInvaders() {
-        System.out.println("Killing");
+        //        System.out.println("Killing");
         for (Invader a : invaders) {
             System.out.println(a.name);
             this.remove(a);
@@ -379,10 +385,11 @@ public class GameScene extends Scene {
         for(Invader invader : invaders) {
             invader.moveDown();
             if (isInvaderOutOfBounds(invader)) {
-                System.out.println("Invader has moved pass you.");
-
-                this.player.setHp(this.player.getHp() - 1);
-                this.deathCheck();
+                if (!invader.isDead()) {
+                    //                    System.out.println("Invader has moved pass you.");
+                    this.player.setHp(this.player.getHp() - 1);
+                    this.deathCheck();
+                }
             }
         }
     }
