@@ -1,5 +1,5 @@
 import javax.swing.ImageIcon;
-import java.awt.Graphics;
+import java.awt.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

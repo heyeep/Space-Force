@@ -2,12 +2,7 @@
  * @author Hiep Nguyen
  */
 import javax.swing.*;
-
-import java.awt.Color;
-import java.awt.Graphics;
-
-import java.awt.Image;
-import javax.swing.ImageIcon;
+import java.awt.*;
 
 public abstract class Atom extends JLabel {
     protected Scene scene;
@@ -56,14 +51,14 @@ public abstract class Atom extends JLabel {
     public Atom(String _name, String _description, String _fileName) {
         this.name = _name;
         this.description = _description;
-        this.setIcon(new ImageIcon(_fileName));
+        this.setImage(_fileName);
     }
 
     public Atom(String _name, String _description, String _fileName,
                 int _x, int _y) {
         this.name = _name;
         this.description = _description;
-        this.setIcon(new ImageIcon(_fileName));
+        this.setImage(_fileName);
         this.setCoord(_x, _y);
     }
 
@@ -72,7 +67,8 @@ public abstract class Atom extends JLabel {
         this.name = _name;
         this.description = _description;
         this.setScene(_scene);
-        this.setIcon(new ImageIcon(_fileName));
+        //        this.setIcon(new ImageIcon(_fileName));
+        this.setImage(_fileName);
         this.setCoord(_x, _y);
     }
 
@@ -87,6 +83,12 @@ public abstract class Atom extends JLabel {
     public abstract void init();
     public abstract void draw(Graphics g);
     public abstract void resize();
+
+    public void initBounds() {
+        Dimension size;
+        size = this.getPreferredSize();
+        this.setBounds(this.getX(), this.getY(), size.width, size.height);
+    }
 
     @Override
     public void paintComponent(Graphics g) {
