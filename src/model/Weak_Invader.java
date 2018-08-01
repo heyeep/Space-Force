@@ -32,7 +32,7 @@ public class Weak_Invader extends Invader {
         this.name = "Weak Invader";
         this.hp = 20;
         this.maxHp = 100;
-        this.speed = 2;
+        this.speed = 1;
         this.setImage("assets/sprites/enemy_4030.png");
         this.setVisible(true);
     }
