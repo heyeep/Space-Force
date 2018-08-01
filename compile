@@ -1,4 +1,5 @@
 cp -r assets/ build/assets/
+cp -rn scores/ build/scores/
 javac -d build/ src/*java src/systems/window/*java \
                 src/systems/scenes/*java \
                 src/systems/game/*java \
