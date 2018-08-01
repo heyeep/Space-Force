@@ -37,10 +37,6 @@ public class GameScene extends Scene {
     private boolean hasBegun = false;
     private boolean restartGameAfterDeath = true;
 
-    int x1,x2,x3,x4,x5;
-    int x12,x22,x32,x42,x52;
-    int x13,x23,x33,x43,x53;
-
     int x = 0, y = 0, velx =0, vely =0;
     int xline=0, yline=0;
 
@@ -59,6 +55,7 @@ public class GameScene extends Scene {
 
     public GameScene(int _width, int _height) {
         super(_width, _height);
+        this.setLayout(null);
         //        System.out.println("GameScene(int _width, int _height)");
     }
 
@@ -70,17 +67,18 @@ public class GameScene extends Scene {
 
     @Override
     public void init() {
-        System.out.println("GameScene.init()");
+        //        System.out.println("GameScene.init()");
         so = new Sound();
         this.rand = new Random();
         this.spawner = new MonsterSpawner(this);
         this.invaders = new Vector<Invader>();
-        this.invadersAlive = 4;
+        this.invadersAlive = 20;
         this.hasBegun = !this.hasBegun;
         this.addPlayer();
-        //this.background = new Turf("Background", "None", "assets/sprites/space.gif");
+        //        this.background = new Turf("Background", "None", "assets/sprites/ship_4030.png");
+        //        this.background.initBounds();
         this.bullet = new Projectile(200, 200);
-
+        this.bullet.initBounds();
         this.setFocusable(true);
         this.requestFocusInWindow();
         this.addKeyListener(this);
@@ -89,24 +87,23 @@ public class GameScene extends Scene {
 
         this.playerhp.setForeground(Color.CYAN);
         this.playerhp.setVisible(true);
+        this.playerhp.setBounds(540, 0, 100, 40);
         this.add(playerhp);
 
         //        so.GameStart();
 
         this.scoreplayer.setForeground(Color.CYAN);
         this.scoreplayer.setVisible(true);
-
+        this.scoreplayer.setBounds(540, 15, 100, 40);
         this.add(scoreplayer);
-        this.add(bullet);
-        //this.add(background);
+
+        //       this.add(this.background);
+        this.add(this.scoreplayer);
+        this.add(this.bullet);
 
         //        MakeRandomMonster();
         //        testSpawnRandomMonsters();
-        testSpawnRandomMonster();
-        testSpawnRandomMonster();
-        testSpawnRandomMonster();
-        testSpawnRandomMonster();
-        //        testSpawnMonster();
+        testSpawnMonsterRow();
     }
 
     // public void MakeRandomMonster(){
@@ -198,9 +195,8 @@ public class GameScene extends Scene {
                 this.player.setVelX(0);
                 this.player.setX(534);
             }
-            if(playerhp.getLocation().getX()!=560)
-                playerhp.setLocation(560, 5);
             playerhp.setText("HP: " + this.player.getHp());
+            scoreplayer.setText("Score: " + this.scores);
             yline += 1;
 
             if(yline>550)
@@ -216,48 +212,51 @@ public class GameScene extends Scene {
                 this.bullet.setY(999);
             }
 
-            Rectangle[] arrRLabels= new Rectangle[15];
+            Rectangle[] arrRLabels= new Rectangle[invaders.size()];
             for(int i=0; i<invaders.size(); i++){
                 arrRLabels[i]=invaders.get(i).getBounds();
             }
             for(Invader invader : invaders) {
-                if(invader.getBounds().intersects(this.bullet.getBounds()))
-                {
-                    this.bullet.setVelocity(0,0);
-                    this.bullet.setY(999);
-                    this.remove(invader);
-                    this.invadersAlive--;
-                    invader.setDead();
-                    invader = null;
+                if (!invader.isDead()) {
+                    if(invader.getBounds().intersects(this.bullet.getBounds()))
+                        {
+                            this.bullet.setVelocity(0,0);
+                            this.bullet.setY(999);
+                            this.remove(invader);
+                            this.invadersAlive--;
+                            invader.setDead();
+                            invader = null;
 
-                    System.gc();
-                    //                    so.MonsterDied();
-                    scores++;
-                    break;
+                            System.gc();
+                            //                    so.MonsterDied();
+                            scores++;
+                            break;
 
-                }
-                if(invader.getBounds().intersects(this.player.getBounds())){
-                    timer.stop();
-                    //                    so.MonsterDied();
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(GameScene.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    if(invader.getBounds().intersects(this.player.getBounds())){
+                        this.player.setHp(this.player.getHp() - 2);
+                        //                    so.MonsterDied();
+                        // try {
+                        //     Thread.sleep(1000);
+                        // } catch (InterruptedException ex) {
+                        //     Logger.getLogger(GameScene.class.getName()).log(Level.SEVERE, null, ex);
+                        // }
+                        //                    so.PlayerDeath();
+                        //                    JOptionPane.showMessageDialog(null, "You died. Your Scores: "+ scores);
+                        /*
+                         * TODO: RESTART GAME
+                         * -------------------
+                         * Not sure how y'all want to do this
+                         * Could just auto restart the game
+                         * Which means resetting the entire map
+                         */
                     }
-                    //                    so.PlayerDeath();
-                    //                    JOptionPane.showMessageDialog(null, "You died. Your Scores: "+ scores);
-                    /*
-                     * TODO: RESTART GAME
-                     * -------------------
-                     * Not sure how y'all want to do this
-                     * Could just auto restart the game
-                     * Which means resetting the entire map
-                     */
                 }
             }
             if(scores>14){
-                timer.stop();
+                //                timer.stop();
                 JOptionPane.showMessageDialog(null, "You WON. Your Scores: "+ scores);
+                this.restartGame();
             }
             //            System.out.println("Score: " + scores);
         }
@@ -319,10 +318,10 @@ public class GameScene extends Scene {
 
     public void testSpawnMonsterRow() {
         final int START_X = 50;
-        final int START_Y = 50;
+        final int START_Y = 0;
         final int MAX_MONSTERS = 10;
 
-        spawner.alotOfWeakInvaders(START_X, START_Y, MAX_MONSTERS, 3);
+        spawner.alotOfWeakInvaders(START_X, START_Y, MAX_MONSTERS, 1);
     }
 
     public boolean areInvadersDead() {

@@ -27,7 +27,8 @@ public class MonsterSpawner {
     public void weakInvader(int x, int y) {
         Weak_Invader invader = new Weak_Invader();
         invader.setCoord(x, y);
-        invader.setVisible(true);
+        invader.initBounds();
+        //        invader.printCoords();
         scene.addInvader(invader);
         scene.add(invader);
     }
@@ -36,6 +37,7 @@ public class MonsterSpawner {
         int x_position = startX;
         while(numberOfMonsters > 0) {
             this.weakInvader(x_position, startY);
+            x_position = x_position + startX;
             numberOfMonsters--;
         }
     }
@@ -51,7 +53,7 @@ public class MonsterSpawner {
         int y_position = startY;
         while(numberOfRows > 0) {
             this.rowOfWeakInvaders(startX, y_position, numberOfMonsters);
-            y_position += startY;
+            y_position += 32;
             numberOfRows--;
         }
     }

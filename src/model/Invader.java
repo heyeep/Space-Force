@@ -42,4 +42,8 @@ public abstract class Invader extends Mob {
         this.dead = true;
         this.setVisible(false);
     }
+
+    public boolean isDead() {
+        return dead;
+    }
 }
