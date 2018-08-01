@@ -31,4 +31,14 @@ public abstract class Object extends Atom {
                   int _x, int _y) {
         super(_name, _description, _fileName, _x, _y);
     }
+
+    public Object(String _name, String _description, String _fileName,
+                  int _x, int _y, Scene _scene) {
+        super(_name, _description, _fileName, _x, _y, _scene);
+    }
+
+    public Object(String _name, String _description,
+                  int _x, int _y, Scene _scene) {
+        super(_name, _description, _x, _y, _scene);
+    }
 }

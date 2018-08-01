@@ -10,6 +10,8 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public abstract class Atom extends JLabel {
+    protected Scene scene;
+
     // TODO: Write setters/getters for name
     protected String name;
 
@@ -62,6 +64,23 @@ public abstract class Atom extends JLabel {
         this.name = _name;
         this.description = _description;
         this.setIcon(new ImageIcon(_fileName));
+        this.setCoord(_x, _y);
+    }
+
+    public Atom(String _name, String _description, String _fileName,
+                int _x, int _y, Scene _scene) {
+        this.name = _name;
+        this.description = _description;
+        this.setScene(_scene);
+        this.setIcon(new ImageIcon(_fileName));
+        this.setCoord(_x, _y);
+    }
+
+    public Atom(String _name, String _description,
+                int _x, int _y, Scene _scene) {
+        this.name = _name;
+        this.description = _description;
+        this.setScene(_scene);
         this.setCoord(_x, _y);
     }
 
@@ -171,5 +190,13 @@ public abstract class Atom extends JLabel {
 
     public String getName() {
         return this.name;
+    }
+
+    public void setScene(Scene _scene) {
+        this.scene = _scene;
+    }
+
+    public Scene getScene() {
+        return this.scene;
     }
 }

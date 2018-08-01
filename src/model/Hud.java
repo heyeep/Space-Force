@@ -41,6 +41,18 @@ public class Hud extends Object implements MouseListener {
         this.init();
     }
 
+    public Hud(String _name, String _description, String _fileName,
+               int _x, int _y, Scene _scene) {
+        super(_name, _description, _fileName, _x, _y);
+        this.init();
+    }
+
+    public Hud(String _name, String _description,
+               int _x, int _y, Scene _scene) {
+        super(_name, _description, _x, _y, _scene);
+        this.init();
+    }
+
     public void init() {
         this.setVisible(true);
         addMouseListener(this);
@@ -72,7 +84,15 @@ public class Hud extends Object implements MouseListener {
         System.out.println("doAction: " + actionName);
         switch (actionName) {
         case "START":
-            // Switch to GameScene;
+            GameScene newGameScene = (GameScene) this.getScene().getNextScene();
+            SpaceForceGame.mainWindow.switchScene(this.getScene(), newGameScene);
+            newGameScene.startTimerAndInit();
+            break;
+        case "SCOREBOARD":
+            // Open Scoreboard;
+            break;
+        case "HELP":
+            // Open help menu
             break;
         default:
             System.out.println("None");
