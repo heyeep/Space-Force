@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
  * @author Mark Chang
  */
 public class ScoreManager {
+    private static final String SCORE_DIR = "scores/scores.txt";
     public static void main(String[] args)
 	{
 		/*Instructions:
@@ -32,7 +33,7 @@ public class ScoreManager {
 	{
 	}
 	/**  
-	 * Inserts score onto the scoreboard text file ("scores.txt")
+	 * Inserts score onto the scoreboard text file (SCORE_DIR)
 	 * 0=rank, 1=name, 2=date, 3=gamemode, 4=score
 	 * Input Parameter "score": String following the pattern of "0,string,string,int,int"
 	 * The rank int and date string can be whatever you want, it's going to be overwritten anyways.
@@ -46,7 +47,7 @@ public class ScoreManager {
 			scorelist[i] = "0,null,-/-/-,0,0";
 		}
 		try{ //Reads the file into scorelist array
-			reader = new BufferedReader(new FileReader("scores.txt"));
+			reader = new BufferedReader(new FileReader(SCORE_DIR));
 			String line = reader.readLine();
 			int counter = 0;
 			while(line != null && counter < 10) //10 scores maximum
@@ -95,7 +96,7 @@ public class ScoreManager {
 			if(insert <=9)
 			{
 				try{
-					FileWriter fileWriter = new FileWriter("scores.txt", false);
+					FileWriter fileWriter = new FileWriter(SCORE_DIR, false);
 					for(int i = 0; i<10; i++)
 					{
 						if(!scorelist[i].equals("0,null,-/-/-,0,0"))
@@ -128,7 +129,7 @@ public class ScoreManager {
 			}
 		}
 		try{
-			reader = new BufferedReader(new FileReader("scores.txt"));
+			reader = new BufferedReader(new FileReader(SCORE_DIR));
 			String line = reader.readLine();
 			int counter = 0;
 			while(line != null && counter < 10) //10 scores maximum
@@ -161,7 +162,7 @@ public class ScoreManager {
 			scorelist[i] = "null";
 		}
 		try{
-			reader = new BufferedReader(new FileReader("scores.txt"));
+			reader = new BufferedReader(new FileReader(SCORE_DIR));
 			String line = reader.readLine();
 			int counter = 0;
 			while(line != null && counter < 10) //10 scores maximum
@@ -193,7 +194,7 @@ public class ScoreManager {
 	public static void clear()
 	{
 		try{
-			FileWriter fileWriter = new FileWriter("scores.txt", false);
+			FileWriter fileWriter = new FileWriter(SCORE_DIR, false);
 			for(int i = 0; i<10; i++)
 			{
 				fileWriter.write("");
