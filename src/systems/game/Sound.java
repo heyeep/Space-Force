@@ -79,9 +79,9 @@ public class Sound {
         try {
             File soundFile = new File(BackgroundFile);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
-            Clip clip = AudioSystem.getClip();  
-            clip.open(audioIn);
-            clip.start();
+            backgroundMusic = AudioSystem.getClip();
+            backgroundMusic.open(audioIn);
+            backgroundMusic.start();
         } 
         catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
@@ -157,10 +157,14 @@ public class Sound {
     public void stopSound () {
         try {
             Clip clip = AudioSystem.getClip();
+            clip.flush();
             clip.stop();
         } catch (LineUnavailableException e) {
             e.printStackTrace();
         }
 
+    }
+
+    public void stopAllSounds() {
     }
 }
