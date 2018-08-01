@@ -1,4 +1,5 @@
 import java.awt.*;
+import javax.swing.*;
 
 public class MainScene extends Scene {
     private Hud gameTitle;
@@ -27,9 +28,10 @@ public class MainScene extends Scene {
         this.drawStartButton(size);
         this.drawScoreBoardButton(size);
         this.drawHelpButton(size);
-        this.add(startButton);
-        this.add(scoreBoardButton);
-        this.add(helpButton);
+        this.add(this.gameTitle, new Integer(Constants.LAYER_HUD));
+        this.add(this.startButton, new Integer(Constants.LAYER_HUD));
+        this.add(this.scoreBoardButton, new Integer(Constants.LAYER_HUD));
+        this.add(this.helpButton, new Integer(Constants.LAYER_HUD));
     }
 
     public void reset() {
@@ -46,13 +48,10 @@ public class MainScene extends Scene {
         this.gameTitle.setBounds((Window.DEFAULT_WIDTH / 2) - (size.width / 2),
                                  (Window.DEFAULT_HEIGHT / 2) - (size.height),
                                  size.width, size.height);
-        this.add(this.gameTitle);
     }
 
     // Position numbers are honestly don't matter
     public void drawStartButton(Dimension size) {
-        //        System.out.println("My Window: " + this.getWindow());
-        //        System.out.println("My Scene: " + this.getName());
         this.startButton = new Hud("START", "Start button", 200, 100, this);
         this.startButton.setFont(new Font("Tahoma", 0, 24));
         this.startButton.setText(this.startButton.getName());
@@ -62,7 +61,6 @@ public class MainScene extends Scene {
         this.startButton.setBounds((Window.DEFAULT_WIDTH / 2) - (size.width / 2),
                                    (Window.DEFAULT_HEIGHT / 2) + (size.height),
                                    size.width, size.height);
-        this.add(this.startButton);
     }
 
     // Position numbers are honestly don't matter
@@ -74,7 +72,6 @@ public class MainScene extends Scene {
         this.scoreBoardButton.setBounds((Window.DEFAULT_WIDTH / 2) - (size.width / 2),
                                         (Window.DEFAULT_HEIGHT / 2) + this.startButton.getPreferredSize().height * 2,
                                         size.width, size.height);
-        this.add(this.scoreBoardButton);
     }
 
     // Position numbers are honestly don't matter
@@ -87,6 +84,5 @@ public class MainScene extends Scene {
                                   (Window.DEFAULT_HEIGHT / 2)
                                   + (this.startButton.getPreferredSize().height * 3) - 6,
                                         size.width, size.height);
-        this.add(this.helpButton);
     }
 }

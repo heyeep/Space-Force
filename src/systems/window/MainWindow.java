@@ -42,6 +42,7 @@ public class MainWindow extends Window {
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
+        this.setLocationRelativeTo(null);
         this.setupMenus();
     }
 

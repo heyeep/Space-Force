@@ -11,7 +11,7 @@ import javax.swing.*;
 
 import java.util.Vector;
 
-public abstract class Scene extends JPanel implements ActionListener, KeyListener {
+public abstract class Scene extends JLayeredPane implements ActionListener, KeyListener {
     private String name;
     private Scene nextScene;
 

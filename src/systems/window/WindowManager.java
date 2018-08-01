@@ -21,10 +21,11 @@ public class WindowManager {
                 }
             });
     }
+
     public static void drawBackground(Scene currentScene) {
         JLabel bg = new JLabel();
         bg.setIcon(new ImageIcon("assets/sprites/space.gif"));
         bg.setBounds(0,0, Window.DEFAULT_WIDTH, Window.DEFAULT_HEIGHT);
-        currentScene.add(bg);
+        currentScene.add(bg, new Integer(1));
     }
 }
