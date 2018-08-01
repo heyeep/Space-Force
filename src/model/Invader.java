@@ -2,6 +2,8 @@ import javax.swing.ImageIcon;
 import java.awt.Graphics;
 
 public abstract class Invader extends Mob {
+    private boolean dead = false;
+
     public Invader() {
         super();
         this.name = "Invader";
@@ -13,29 +15,31 @@ public abstract class Invader extends Mob {
 
     public Invader(String _name, String _description) {
         super(_name, _description);
-        this.init();
     }
 
-    public void init() {
-        System.out.println("Invader.init()");
-        this.setCoord(10, 10);
-        //        this.setText(this.name);
-    }
+    public abstract void init();
 
     public void draw(Graphics g) {
-        System.out.println("Cake");
+        //        System.out.println("Cake");
     }
 
     public void resize() {
     }
 
     public void moveDown() {
-        this.setCoord(this.getX(), this.getY() + this.getSpeed());
+        if (!dead) {
+            this.setCoord(this.getX(), this.getY() + this.getSpeed());
+        }
     }
 
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         this.draw(g);
+    }
+
+    public void setDead() {
+        this.dead = true;
+        this.setVisible(false);
     }
 }
