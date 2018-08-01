@@ -84,17 +84,10 @@ public class Hud extends Object implements MouseListener {
         System.out.println("doAction: " + actionName);
         switch (actionName) {
         case "START":
-            GameScene newGameScene = (GameScene) this.getScene().getNextScene();
-            SpaceForceGame.mainWindow.switchScene(this.getScene(), newGameScene);
-            newGameScene.startTimerAndInit();
+            WindowManager.startNewGame(this.getScene());
             break;
         case "SCOREBOARD":
-            // This uses code by Mark
-            java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new AllScoreJFrame().setVisible(true);
-                    }
-                });
+            WindowManager.openScoreBoard();
             break;
         case "HELP":
             // Open help menu

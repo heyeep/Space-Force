@@ -185,8 +185,8 @@ public class ScoreManager {
 			if(!scorelist[i].equals("null"))
 			{
 				String[] output = scorelist[i].split(",");
-				String temp =(output[0] + " " + output[1]+ " " + output[2] + " " + output[3]+ " " + output[4] + "\n");
-				System.out.print(temp);
+                //				String temp =(output[0] + " " + output[1]+ " " + output[2] + " " + output[3]+ " " + output[4] + "\n");
+                //				System.out.print(temp);
 			}
 		}
 	}

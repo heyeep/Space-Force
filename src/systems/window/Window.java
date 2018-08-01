@@ -32,11 +32,6 @@ public class Window extends JFrame {
         this.init();
     }
 
-    public void addScene(Scene _scene) {
-        //        System.out.println("Window.addScene(Scene _scene)");
-        getContentPane().add(_scene);
-    }
-
     public void init() {
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -48,7 +43,7 @@ public class Window extends JFrame {
         oldScene.revalidate();
         oldScene.repaint();
         getContentPane().remove(oldScene);
-        this.setContentPane(newScene);
+        this.setScene(newScene);
     }
 
     public void setScene(Scene _scene) {

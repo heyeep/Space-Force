@@ -56,6 +56,7 @@ public class GameScene extends Scene {
 
     public GameScene(int _width, int _height) {
         super(_width, _height);
+        this.setName("Game Scene");
         this.setLayout(null);
         //        System.out.println("GameScene(int _width, int _height)");
     }
