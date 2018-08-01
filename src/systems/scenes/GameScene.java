@@ -4,9 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Rectangle;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.Random;
@@ -32,11 +30,13 @@ public class GameScene extends Scene {
     private Vector<Invader> invaders;
     private int invadersAlive;
     private ScoreManager scoreManager;
-    Sound so;
+    private Sound soundManager;
     int scores = 0;
 
     private boolean hasBegun = false;
     private boolean restartGameAfterDeath = true;
+
+    private Hud gameOver;
 
     int x = 0, y = 0, velx =0, vely =0;
     int xline=0, yline=0;
@@ -65,32 +65,31 @@ public class GameScene extends Scene {
 
     @Override
     public void init() {
-        so = new Sound();
+        this.soundManager = new Sound();
         this.rand = new Random();
         this.spawner = new MonsterSpawner(this);
         this.invaders = new Vector<Invader>();
         this.invadersAlive = 20;
         this.scoreManager = new ScoreManager();
         this.hasBegun = !this.hasBegun;
-        this.addPlayer();
-
         this.bullet = new Projectile(200, 200);
-        this.bullet.initBounds();
+        this.addPlayer();
+        this.soundManager.GameStart();
         this.requestFocusInWindow();
+
+        this.bullet.initBounds();
 
         this.playerhp.setForeground(Color.CYAN);
         this.playerhp.setVisible(true);
         this.playerhp.setBounds(540, 0, 100, 40);
-        this.add(playerhp);
-
-        //        so.GameStart();
 
         this.scoreplayer.setForeground(Color.CYAN);
         this.scoreplayer.setVisible(true);
         this.scoreplayer.setBounds(540, 15, 100, 40);
 
-        this.add(this.scoreplayer);
-        this.add(this.bullet);
+        this.add(this.playerhp, new Integer(Constants.LAYER_HUD));
+        this.add(this.scoreplayer, new Integer(Constants.LAYER_HUD));
+        this.add(this.bullet, new Integer(Constants.LAYER_PROJECTILE));
 
         //        MakeRandomMonster();
         //        testSpawnRandomMonsters();
@@ -136,7 +135,7 @@ public class GameScene extends Scene {
         this.background = null;
         this.invaders.clear();
         this.invaders = null;
-        this.so = null;
+        this.soundManager = null;
         this.hasBegun = false;
         this.invadersAlive = 0;
         this.scores = 0;
@@ -145,7 +144,7 @@ public class GameScene extends Scene {
     public void addPlayer() {
         //        String username = JOptionPane.showInputDialog("Enter your name: ");
         this.player = new Player("Test");
-        this.add(this.player);
+        this.add(this.player, new Integer(Constants.LAYER_MOB));
     }
 
     public void draw(Graphics g) {
@@ -165,9 +164,11 @@ public class GameScene extends Scene {
     public void actionPerformed(ActionEvent e) {
         if (this.hasBegun) {
             if (areInvadersDead()) {
+                this.soundManager.WonGame();
                 win();
             }
             if (isPlayerDead()) {
+                this.soundManager.PlayerDeath();
                 end();
             }
             this.moveInvaders();
@@ -219,8 +220,8 @@ public class GameScene extends Scene {
                             invader = null;
 
                             System.gc();
-                            //                    so.MonsterDied();
-                            scores++;
+                            this.soundManager.MonsterDied();
+                            this.scores++;
                             break;
 
                         }
@@ -262,7 +263,7 @@ public class GameScene extends Scene {
                     {
                         this.bullet.setX(this.player.getX());
                         this.bullet.setY(this.player.getY());
-                        //                        so.Shoot();
+                        this.soundManager.Shoot();
                     }
             default:
                 break;
@@ -377,6 +378,14 @@ public class GameScene extends Scene {
 
     public void end() {
         System.out.println("Game has ended.");
+        try {
+            this.drawGameOver();
+            Thread.sleep(10000);
+            this.soundManager.stopSound();
+            this.remove(this.gameOver);
+        } catch (InterruptedException ex) {
+        }
+
         if (this.restartGameAfterDeath) {
             this.restartGame();
         } else {
@@ -397,6 +406,19 @@ public class GameScene extends Scene {
         this.revalidate();
         this.repaint();
         this.init();
+    }
+
+    public void drawGameOver() {
+        Dimension size;
+        this.gameOver = new Hud("GAME OVER", "Game over message", 200, 50, this);
+        this.gameOver.setFont(new Font("Tahoma", 0, 72));
+        this.gameOver.setForeground(Color.WHITE);
+        this.gameOver.setText(this.gameOver.getName());
+        size = this.gameOver.getPreferredSize();
+        this.setBounds((Window.DEFAULT_WIDTH / 2) - (size.width / 2),
+                                 (Window.DEFAULT_HEIGHT / 2) - (size.height),
+                                 200, 400);
+        this.add(this.gameOver, new Integer(Constants.LAYER_HUD));
     }
 
 }

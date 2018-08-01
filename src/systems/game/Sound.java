@@ -20,12 +20,12 @@ public class Sound {
     private String ShootFile, CollisionFile , DeathFile, WonFile, BackgroundFile, EarnFile;
     public Sound()
     {
-        WonFile= "won.wav";
-        EarnFile="earn.wav";
-        ShootFile="silencer.wav";
-        CollisionFile="sfx_shoot.wav";
-        BackgroundFile="8BitMetal.wav";
-        DeathFile="GameOver.wav";
+        WonFile= "assets/sounds/won.wav";
+        EarnFile="assets/sounds/earn.wav";
+        ShootFile="assets/sounds/silencer.wav";
+        CollisionFile="assets/sounds/sfx_shoot.wav";
+        BackgroundFile="assets/sounds/8BitMetal.wav";
+        DeathFile="assets/sounds/GameOver.wav";
     }
     public Sound(String ShootFile, String CollisionFile , String DeathFile, String WonFile, String BackgroundFile, String EarnFile){
         this.ShootFile=ShootFile;
@@ -56,7 +56,7 @@ public class Sound {
     }
     public void MonsterDied()
     {
-       try {        
+        try {
             File soundFile = new File(CollisionFile);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
             Clip clip = AudioSystem.getClip();  
@@ -73,9 +73,10 @@ public class Sound {
             e.printStackTrace();
         }        
     }
-     public void GameStart()
+    public void GameStart()
     {
-       try {        
+        this.stopSound();
+        try {
             File soundFile = new File(BackgroundFile);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
             Clip clip = AudioSystem.getClip();  
@@ -94,7 +95,8 @@ public class Sound {
     }
     public void PlayerDeath()
     {
-       try {        
+        this.stopSound();
+        try {
             File soundFile = new File(DeathFile);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
             Clip clip = AudioSystem.getClip();  
@@ -113,7 +115,7 @@ public class Sound {
     }
     public void EarnAward()
     {
-       try {        
+        try {
             File soundFile = new File(EarnFile);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
             Clip clip = AudioSystem.getClip();  
@@ -132,7 +134,8 @@ public class Sound {
     }
     public void WonGame()
     {
-       try {        
+        this.stopSound();
+        try {
             File soundFile = new File(WonFile);
             AudioInputStream audioIn = AudioSystem.getAudioInputStream(soundFile);              
             Clip clip = AudioSystem.getClip();  
@@ -148,5 +151,16 @@ public class Sound {
         catch (LineUnavailableException e) {
             e.printStackTrace();
         }        
+    }
+
+    // Dont by Hiep.
+    public void stopSound () {
+        try {
+            Clip clip = AudioSystem.getClip();
+            clip.stop();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
+
     }
 }
