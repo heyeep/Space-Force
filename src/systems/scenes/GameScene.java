@@ -31,6 +31,7 @@ public class GameScene extends Scene {
     private Turf background;
     private Vector<Invader> invaders;
     private int invadersAlive;
+    private ScoreManager scoreManager;
     Sound so;
     int scores = 0;
 
@@ -73,6 +74,7 @@ public class GameScene extends Scene {
         this.spawner = new MonsterSpawner(this);
         this.invaders = new Vector<Invader>();
         this.invadersAlive = 20;
+        this.scoreManager = new ScoreManager();
         this.hasBegun = !this.hasBegun;
         this.addPlayer();
         //        this.background = new Turf("Background", "None", "assets/sprites/ship_4030.png");
@@ -418,6 +420,7 @@ public class GameScene extends Scene {
     }
 
     public void restartGame() {
+        scoreManager.insertScore("0," + this.player.getName() + ",0,1," + this.scores);
         System.out.println("Restarting game...");
         this.removeAll();
         this.reset();

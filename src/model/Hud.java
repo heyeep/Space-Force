@@ -3,7 +3,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
-import javax.swing.ImageIcon;
+import javax.swing.*;
 
 public class Hud extends Object implements MouseListener {
     public Hud() {
@@ -89,7 +89,12 @@ public class Hud extends Object implements MouseListener {
             newGameScene.startTimerAndInit();
             break;
         case "SCOREBOARD":
-            // Open Scoreboard;
+            // This uses code by Mark
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                    public void run() {
+                        new AllScoreJFrame().setVisible(true);
+                    }
+                });
             break;
         case "HELP":
             // Open help menu
