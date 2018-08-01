@@ -30,6 +30,7 @@ public class GameScene extends Scene {
     private Projectile bullet;
     private Turf background;
     private Vector<Invader> invaders;
+    private int invadersAlive;
     Sound so;
     int scores = 0;
 
@@ -74,6 +75,7 @@ public class GameScene extends Scene {
         this.rand = new Random();
         this.spawner = new MonsterSpawner(this);
         this.invaders = new Vector<Invader>();
+        this.invadersAlive = 4;
         this.hasBegun = !this.hasBegun;
         this.addPlayer();
         //this.background = new Turf("Background", "None", "assets/sprites/space.gif");
@@ -144,8 +146,9 @@ public class GameScene extends Scene {
         this.invaders.clear();
         this.invaders = null;
         this.so = null;
-        this.scores = 0;
         this.hasBegun = false;
+        this.invadersAlive = 0;
+        this.scores = 0;
 
         //        JLabel playerhp = new JLabel();
         //        JLabel scoreplayer = new JLabel();
@@ -173,7 +176,10 @@ public class GameScene extends Scene {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (this.hasBegun) {
-            if (this.player.getHp() <= 0) {
+            if (areInvadersDead()) {
+                win();
+            }
+            if (isPlayerDead()) {
                 end();
             }
             this.moveInvaders();
@@ -214,14 +220,16 @@ public class GameScene extends Scene {
             for(int i=0; i<invaders.size(); i++){
                 arrRLabels[i]=invaders.get(i).getBounds();
             }
-            for(Invader invader : invaders){
+            for(Invader invader : invaders) {
                 if(invader.getBounds().intersects(this.bullet.getBounds()))
                 {
                     this.bullet.setVelocity(0,0);
                     this.bullet.setY(999);
-
                     this.remove(invader);
+                    this.invadersAlive--;
+                    invader.setDead();
                     invader = null;
+
                     System.gc();
                     //                    so.MonsterDied();
                     scores++;
@@ -256,7 +264,6 @@ public class GameScene extends Scene {
     }
     @Override
     public void keyPressed(KeyEvent e) {
-        System.out.println("Cake");
         if (this.hasBegun) {
             int code = e.getKeyCode();
             switch (code) {
@@ -319,7 +326,7 @@ public class GameScene extends Scene {
     }
 
     public boolean areInvadersDead() {
-        if (invaders.size() <= 0) {
+        if (this.hasBegun && invadersAlive == 0) {
             return true;
         }
         return false;
@@ -336,9 +343,11 @@ public class GameScene extends Scene {
         }
     }
 
-    public void winCheck() {
+    public void win() {
         if (areInvadersDead()) {
             System.out.println("You won.");
+            this.restartGame();
+
             /*
              * TODO: SOUND EFFECTS
              * -------------------
@@ -356,7 +365,6 @@ public class GameScene extends Scene {
             System.gc();
         }
         this.invaders.clear();
-        this.winCheck();
     }
 
     public void addInvader(Invader invader) {
@@ -397,12 +405,6 @@ public class GameScene extends Scene {
 
     public void end() {
         System.out.println("Game has ended.");
-        // GameScene nextScene = new GameScene(Window.DEFAULT_WIDTH,
-        //                                  Window.DEFAULT_HEIGHT);
-        // nextScene.revalidate();
-        // nextScene.repaint();
-        // this.reset();
-        // this.getWindow().switchScene(this, nextScene);
         if (this.restartGameAfterDeath) {
             this.restartGame();
         } else {
