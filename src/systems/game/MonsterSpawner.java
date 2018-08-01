@@ -28,7 +28,6 @@ public class MonsterSpawner {
         Weak_Invader invader = new Weak_Invader();
         invader.setCoord(x, y);
         invader.initBounds();
-        //        invader.printCoords();
         scene.addInvader(invader);
         scene.add(invader);
     }
@@ -58,3 +57,4 @@ public class MonsterSpawner {
         }
     }
 }
+n

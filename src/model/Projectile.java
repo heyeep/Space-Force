@@ -26,7 +26,6 @@ public class Projectile extends Object {
     {
         this.setCoord(_x, _y);
         this.init();
-        this.printCoords();
     }
 
     public void tick()

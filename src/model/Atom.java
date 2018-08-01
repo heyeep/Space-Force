@@ -6,14 +6,8 @@ import java.awt.*;
 
 public abstract class Atom extends JLabel {
     protected Scene scene;
-
-    // TODO: Write setters/getters for name
     protected String name;
-
-    // TODO: Write setters/getters for description
     protected String description;
-
-    // TODO: Write setters/getters for density
     protected boolean density;
 
     protected int velX;
@@ -34,7 +28,7 @@ public abstract class Atom extends JLabel {
     public Atom(String _name, ImageIcon _icon) {
         this.name = _name;
         this.description = "None";
-        this.setIcon(_icon);
+        this.setImage(_icon);
     }
 
     public Atom(String _name, String _description) {
@@ -67,7 +61,6 @@ public abstract class Atom extends JLabel {
         this.name = _name;
         this.description = _description;
         this.setScene(_scene);
-        //        this.setIcon(new ImageIcon(_fileName));
         this.setImage(_fileName);
         this.setCoord(_x, _y);
     }
@@ -90,6 +83,10 @@ public abstract class Atom extends JLabel {
         this.setBounds(this.getX(), this.getY(), size.width, size.height);
     }
 
+    public void initBounds(int _x, int _y, int _width, int _height) {
+        this.setBounds(_x, _y, _width, _height);
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -98,12 +95,10 @@ public abstract class Atom extends JLabel {
 
     public void setCoord(int _x, int _y) {
         this.setLocation(_x, _y);
-        //        this.printCoords();
     }
 
     public void setCoord(double _x, double _y) {
         this.setLocation((int) _x, (int) _y);
-        //        this.printCoords();
     }
 
     public void setX(int _x) {
@@ -172,13 +167,8 @@ public abstract class Atom extends JLabel {
     }
 
     public void setImage(String _fileName) {
-        //       System.out.println("setImage: " +  _fileName);
         this.setIcon(new ImageIcon(_fileName));
     }
-
-    //    public Image getIcon() {
-    //        return this.icon;
-    //    }
 
     public void printCoords() {
         System.out.println("Coords: ("

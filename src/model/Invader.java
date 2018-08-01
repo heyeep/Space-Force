@@ -20,7 +20,6 @@ public abstract class Invader extends Mob {
     public abstract void init();
 
     public void draw(Graphics g) {
-        //        System.out.println("Cake");
     }
 
     public void resize() {

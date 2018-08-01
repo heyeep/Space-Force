@@ -1,7 +1,7 @@
 import java.awt.Color;
 import java.awt.Graphics;
 
-public  class Turf extends Atom {
+public class Turf extends Atom {
     public Turf() {
         super("Default Turf", "None");
         this.init();
@@ -24,12 +24,9 @@ public  class Turf extends Atom {
     }
 
     public void init() {
-        System.out.println("Cake");
-        this.setCoord(50, 50);
-        this.setImage("assets/sprites/ship_4030.png");
+        System.out.println(this.name);
         this.setText(this.name);
         this.setVisible(true);
-        this.printCoords();
     }
 
     public void draw(Graphics g) {

@@ -81,7 +81,7 @@ public class Hud extends Object implements MouseListener {
     }
 
     public void doAction(String actionName) {
-        System.out.println("doAction: " + actionName);
+        //        System.out.println("doAction: " + actionName);
         switch (actionName) {
         case "START":
             WindowManager.startNewGame(this.getScene());

@@ -30,7 +30,6 @@ public class MainScene extends Scene {
         this.add(startButton);
         this.add(scoreBoardButton);
         this.add(helpButton);
-        //        System.out.println(this.getWindow());
     }
 
     public void reset() {
