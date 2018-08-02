@@ -1,3 +1,4 @@
+// Hiep
 import javax.swing.*;
 
 public class WindowManager {
@@ -14,12 +15,13 @@ public class WindowManager {
     }
 
     public static void openScoreBoard() {
-        // This code came from Mark
+        // Mark
         java.awt.EventQueue.invokeLater(new Runnable() {
                 public void run() {
                     new AllScoreJFrame().setVisible(true);
                 }
             });
+        // End
     }
 
     public static void drawBackground(Scene currentScene) {

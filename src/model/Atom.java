@@ -1,6 +1,4 @@
-/**
- * @author Hiep Nguyen
- */
+// Hiep
 import javax.swing.*;
 import java.awt.*;
 

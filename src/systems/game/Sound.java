@@ -153,7 +153,7 @@ public class Sound {
         }        
     }
 
-    // Dont by Hiep.
+    // Hiep
     public void stopSound () {
         try {
             Clip clip = AudioSystem.getClip();
@@ -164,7 +164,5 @@ public class Sound {
         }
 
     }
-
-    public void stopAllSounds() {
-    }
+    // End
 }

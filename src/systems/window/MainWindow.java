@@ -1,3 +1,7 @@
+// Hiep
+// Note: Hoang wrote a version of this, except it wasn't
+//       very Objected Oriented and was basically one big
+//       function. He deserves credit for this also.
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.*;

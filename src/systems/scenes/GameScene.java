@@ -1,9 +1,6 @@
-//package javaapplication10;
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// Hiep
+// Note: Most of this section started off from Hoang's skeleton
+//       I took a majority of it and broke it up into pieces,
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -48,7 +45,9 @@ public class GameScene extends Scene {
     // Huy
     Vector<Explosion> explosions = new Vector<Explosion>();
     Explosion explosionTest = new Explosion(3);
+    // endGame
 
+    // Hiep
     public GameScene() {
         super();
     }
@@ -67,9 +66,11 @@ public class GameScene extends Scene {
         this.init();
         this.timer.start();
     }
+    // End
 
     @Override
     public void init() {
+        // Hiep
         this.soundManager = new Sound();
         this.rand = new Random();
         this.spawner = new MonsterSpawner(this);
@@ -96,11 +97,10 @@ public class GameScene extends Scene {
         this.add(this.scoreplayer, new Integer(Constants.LAYER_HUD));
         this.add(this.bullet, new Integer(Constants.LAYER_PROJECTILE));
 
-        //        MakeRandomMonster();
         testSpawnRandomMonsters();
 
-        //        testSpawnMonsterRow();
         WindowManager.drawBackground(this);
+        // End
 
         // Huy
         Explosion e = new Explosion(3);
@@ -109,36 +109,10 @@ public class GameScene extends Scene {
         this.add(e, new Integer(Constants.LAYER_PROJECTILE));
         this.explosionTest.setLocation(100, 100);
         this.add(explosionTest, new Integer(Constants.LAYER_PROJECTILE));
+        // End
     }
 
-    // public void MakeRandomMonster(){
-    //     rand=new Random();
-    //     do
-    //     {
-    //         x1=rand.nextInt(50);
-    //         x2=x1+rand.nextInt(115);
-    //         x3=x2+rand.nextInt(260);
-    //         x4=x3+rand.nextInt(405);
-    //         x5=x4+rand.nextInt(550);
-    //     }while(x1 > 550 || x2 > 550 || x3 > 550 || x4 > 550 || x5 >550);
-
-    //     do{
-    //         x12=rand.nextInt(50);
-    //         x22=x12+rand.nextInt(115);
-    //         x32=x22+rand.nextInt(260);
-    //         x42=x32+rand.nextInt(405);
-    //         x52=x42+rand.nextInt(550);
-    //     } while(x12 > 550 || x22 > 550 || x32 > 550 || x42 > 550 || x52 >550);
-
-    //     do{
-    //         x13=rand.nextInt(50);
-    //         x23=x13+rand.nextInt(115);
-    //         x33=x23+rand.nextInt(260);
-    //         x43=x33+rand.nextInt(405);
-    //         x53=x43+rand.nextInt(550);
-    //     }while(x13 > 550 || x23 > 550 || x33 > 550 || x43 > 550 || x53 >550);
-    // }
-
+    // Hiep
     public void reset() {
         this.rand = null;
         this.spawner = null;
@@ -152,13 +126,20 @@ public class GameScene extends Scene {
         this.invadersAlive = 0;
         this.scores = 0;
     }
+    // End
 
     public void addPlayer() {
-        //        String username = JOptionPane.showInputDialog("Enter your name: ");
-        this.player = new Player("Test");
+        // Hoang
+        String username = JOptionPane.showInputDialog("Enter your name: ");
+        this.player = new Player(username);
+        // End
+
+        // Hiep
         this.add(this.player, new Integer(Constants.LAYER_MOB));
+        // End
     }
 
+    // Hiep
     public void draw(Graphics g) {
         if (this.hasBegun) {
             this.player.draw(g);
@@ -171,6 +152,7 @@ public class GameScene extends Scene {
         super.paintComponent(g);
         this.draw(g);
     }
+    // End
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -181,14 +163,16 @@ public class GameScene extends Scene {
             Explosion exp1 = explosions.firstElement();
             exp1.nextFrame();
             // End
+
             if (areInvadersDead()) {
                 //                this.soundManager.WonGame();
-                //                win();
+                //                winCheck();
                 System.out.println("All monsters killed");
             }
+
             if (isPlayerDead()) {
                 this.soundManager.PlayerDeath();
-                end();
+                endGame();
             }
             this.moveInvaders();
             if(this.player.getLocation().getY()!=330)
@@ -236,6 +220,7 @@ public class GameScene extends Scene {
                             exp.setLocation(invader.getX(), invader.getY());
                             exp.setActive(true);
                             // End
+
                             // Hiep
                             Runnable changeStateOfExplosionWhichShouldReallyBeInsideTheExplosionClass = () -> {
                                 setVisible(true);
@@ -243,6 +228,7 @@ public class GameScene extends Scene {
                             changeStateOfExplosionWhichShouldReallyBeInsideTheExplosionClass.run();
                             Thread thread = new Thread(changeStateOfExplosionWhichShouldReallyBeInsideTheExplosionClass);
                             thread.start();
+                            // End
 
                             this.bullet.setVelocity(0,0);
                             this.bullet.setY(999);
@@ -307,10 +293,12 @@ public class GameScene extends Scene {
     @Override
     public void keyTyped(KeyEvent e) {
     }
+
     @Override
     public void keyReleased(KeyEvent e) {
     }
 
+    // Hiep
     public void testSpawnMonster() {
         spawner.weakInvader(50, 50);
     }
@@ -353,11 +341,10 @@ public class GameScene extends Scene {
         }
     }
 
-    public void win() {
+    public void winCheck() {
         if (areInvadersDead()) {
             System.out.println("You won.");
             this.restartGame();
-
             /*
              * TODO: SOUND EFFECTS
              * -------------------
@@ -367,7 +354,6 @@ public class GameScene extends Scene {
     }
 
     public void testKillAllInvaders() {
-        //        System.out.println("Killing");
         for (Invader a : invaders) {
             System.out.println(a.name);
             this.remove(a);
@@ -395,25 +381,14 @@ public class GameScene extends Scene {
     }
 
     public boolean isInvaderOutOfBounds(Invader invader) {
-        if (invader.getY() >= this.getHeight()) {
-            /*
-             * TODO: SOUND EFFECTS
-             * -------------------
-             * Sound Effects for when Invader leaves screen
-             */
-            return true;
-        }
-        return false;
+        return invader.getY() >= this.getHeight();
     }
 
     public boolean isPlayerDead() {
-        if (player.getHp() <= 0) {
-            return true;
-        }
-        return false;
+        return player.getHp() <= 0;
     }
 
-    public void end() {
+    public void endGame() {
         System.out.println("Game has ended.");
         try {
             //            this.drawGameOver();
@@ -471,5 +446,5 @@ public class GameScene extends Scene {
         //                100, 40);
         // this.add(go, new Integer(Constants.LAYER_HUD));
     }
-
+    // End
 }
