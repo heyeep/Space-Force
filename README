@@ -1,6 +1,6 @@
 * Cloning
   # Change directory into folder where projects are kept
-  $ cd schoolg
+  $ cd school
   # Clone the repo
   $ git clone https://gitlab.com/cs4310/spaceforce.git
 * Compile
