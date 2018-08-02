@@ -1,6 +1,9 @@
-pwd
-cp -R assets/ build/assets/
-cp -Rn scores/ build/scores/
+#!/usr/bin/env bash
+
+rm -rf build/
+mkdir build/ build/assets build/scores
+cp -r assets/ build/assets/
+cp -rn scores/ build/scores/
 javac -d build/ src/*java src/systems/window/*java \
                 src/systems/scenes/*java \
                 src/systems/game/*java \
