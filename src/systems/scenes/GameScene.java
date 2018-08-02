@@ -150,7 +150,7 @@ public class GameScene extends Scene {
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        this.draw(g);
+        //        this.draw(g);
     }
     // End
 
@@ -447,4 +447,7 @@ public class GameScene extends Scene {
         // this.add(go, new Integer(Constants.LAYER_HUD));
     }
     // End
+
+    public void end() {
+    }
 }
