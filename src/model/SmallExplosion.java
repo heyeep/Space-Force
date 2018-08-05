@@ -12,7 +12,7 @@ import java.awt.*;
  * @author Huy
  */
 public class SmallExplosion extends JLabel implements Explosion {
-    private static final int MAX_FRAME=10;
+    private static final int MAX_FRAME=5;
     private int _frame;
     private int _internalCount;
     private int _COUNT_BETWEEN_FRAMES;
