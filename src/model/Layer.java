@@ -6,11 +6,17 @@ public class Layer extends Node {
     }
 
     public Layer(int _z) {
-        this.z = 0;
+        if(_z>0)
+            this.z = z;
+        else
+            this.z=0;
     }
 
     public void setZ(int _z) {
-        this.z = _z;
+        if(_z>0)
+            this.z = _z;
+        else
+            this.z=0;
     }
 
     public int getZ() {
