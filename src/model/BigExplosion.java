@@ -88,5 +88,21 @@ public class BigExplosion extends JLabel implements Explosion {
         Dimension size;
         size = this.getPreferredSize();
         this.setBounds(this.getX(), this.getY(), size.width, size.height);
-    }   
+    }
+    public void initBounds2() {
+        Dimension size;
+        size = this.getPreferredSize();
+        this.setBounds(this.getX()+5, this.getY()+, size.width, size.height);
+        
+    public void initBounds3() {
+        Dimension size;
+        size = this.getPreferredSize();
+        this.setBounds(this.getX(), this.getY()+8, size.width, size.height);
+    }
+       public void initBounds4() {
+        Dimension size;
+        size = this.getPreferredSize();
+        this.setBounds(this.getX()+9, this.getY()+2, size.width, size.height);
+    }
+    }
 }
