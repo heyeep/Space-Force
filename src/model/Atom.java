@@ -37,7 +37,10 @@ public abstract class Atom extends JLabel {
     public Atom(String _name, String _description, int _x, int _y) {
         this.name = _name;
         this.description = _description;
-        this.setCoord(_x, _y);
+        if(_x>0 && _y>0)
+            this.setCoord(_x, _y);
+        else
+            this.setCoord(0, 0);
     }
 
     public Atom(String _name, String _description, String _fileName) {
@@ -51,7 +54,10 @@ public abstract class Atom extends JLabel {
         this.name = _name;
         this.description = _description;
         this.setImage(_fileName);
-        this.setCoord(_x, _y);
+        if(_x>0 && _y>0)
+            this.setCoord(_x, _y);
+        else
+            this.setCoord(0, 0);
     }
 
     public Atom(String _name, String _description, String _fileName,
@@ -60,7 +66,10 @@ public abstract class Atom extends JLabel {
         this.description = _description;
         this.setScene(_scene);
         this.setImage(_fileName);
-        this.setCoord(_x, _y);
+        if(_x>0 && _y>0)
+            this.setCoord(_x, _y);
+        else
+            this.setCoord(0, 0);
     }
 
     public Atom(String _name, String _description,
@@ -68,7 +77,10 @@ public abstract class Atom extends JLabel {
         this.name = _name;
         this.description = _description;
         this.setScene(_scene);
-        this.setCoord(_x, _y);
+        if(_x>0 && _y>0)
+            this.setCoord(_x, _y);
+        else
+            this.setCoord(0, 0);
     }
 
     public abstract void init();
@@ -82,7 +94,10 @@ public abstract class Atom extends JLabel {
     }
 
     public void initBounds(int _x, int _y, int _width, int _height) {
-        this.setBounds(_x, _y, _width, _height);
+        if(_x>0 && _y>0 && _width>0 && _height>0)
+            this.setBounds(_x, _y, _width, _height);
+        else
+            this.setBounds(0, 0, 0, 0);
     }
 
     @Override
@@ -92,19 +107,31 @@ public abstract class Atom extends JLabel {
     }
 
     public void setCoord(int _x, int _y) {
-        this.setLocation(_x, _y);
+        if(_x>0 && _y>0)
+            this.setLocation(_x, _y);
+        else
+            this.setLocation(0, 0);
     }
 
     public void setCoord(double _x, double _y) {
-        this.setLocation((int) _x, (int) _y);
+        if(_x>0 && _y>0)
+            this.setLocation((int) _x, (int) _y);
+        else
+            this.setLocation(0, 0);
     }
 
     public void setX(int _x) {
-        this.setCoord(_x, (int) this.getLocation().getY());
+        if(_x>0)
+            this.setCoord(_x, (int) this.getLocation().getY());
+        else
+            this.setCoord(0, (int) this.getLocation().getY());
     }
 
     public void setX(double _x) {
-        this.setCoord((int) _x, (int) this.getLocation().getY());
+        if(_x>0)
+            this.setCoord((int)_x, (int) this.getLocation().getY());
+        else
+            this.setCoord(0, (int) this.getLocation().getY());
     }
 
     public int getX() {
@@ -116,11 +143,17 @@ public abstract class Atom extends JLabel {
     }
 
     public void setY(int _y) {
-        this.setCoord((int) this.getLocation().getX(), _y);
+        if(_y>0)
+            this.setCoord((int) this.getLocation().getX(), _y);
+        else
+            this.setCoord((int) this.getLocation().getX(), 0);
     }
 
     public void setY(double _y) {
-        this.setCoord((int) _y, (int) this.getLocation().getY());
+         if(_y>0)
+            this.setCoord((int) this.getLocation().getX(), (int)_y);
+        else
+            this.setCoord((int) this.getLocation().getX(), 0);
     }
 
     public int getY() {
@@ -132,12 +165,21 @@ public abstract class Atom extends JLabel {
     }
 
     public void setVelocity(int _velX, int _velY) {
-        this.velX = _velX;
-        this.velY = _velY;
+        if(_velX>=0 && _velY>=0){
+            this.velX = _velX;
+            this.velY = _velY;
+        }
+        else{
+            this.velX = 0;
+            this.velY = 0;
+        }
     }
 
     public void setVelX(int _velX) {
-        this.velX = _velX;
+        if(_velX>=0)
+            this.velX = _velX;
+        else
+            this.velX=0;
     }
 
     public int getVelX() {
@@ -145,7 +187,10 @@ public abstract class Atom extends JLabel {
     }
 
     public void setVelY(int _velY) {
-        this.velY = _velY;
+        if(_velY>=0)
+            this.velY = _velY;
+        else
+            this.velY=0;
     }
 
     public int getVelY() {
@@ -153,7 +198,10 @@ public abstract class Atom extends JLabel {
     }
 
     public void setSpeed(int _speed) {
-        this.speed = _speed;
+        if(_speed>=0)
+            this.speed = _speed;
+        else
+            this.speed=0;
     }
 
     public int getSpeed() {
