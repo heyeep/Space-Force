@@ -17,18 +17,32 @@ public class Window extends JFrame {
     }
 
     public Window(int _width, int _height) {
-        //        System.out.println("Window");
-        this.setSize(_width, _height);
-        this.width = _width;
-        this.height = _height;
+        if(_width >0 && _height>0)
+        {    
+            this.setSize(_width, _height);
+            this.width = _width;
+            this.height = _height;
+        }
+        else{
+            this.setSize(100, 100);
+            this.width = 100;
+            this.height = 100;
+        }
         this.init();
     }
 
     public Window(int _width, int _height, Scene _scene) {
-        //        System.out.println("Window");
-        this.setSize(_width, _height);
-        this.width = _width;
-        this.height = _height;
+        if(_width >0 && _height>0)
+        {    
+            this.setSize(_width, _height);
+            this.width = _width;
+            this.height = _height;
+        }
+        else{
+            this.setSize(100, 100);
+            this.width = 100;
+            this.height = 100;
+        }
         this.setScene(_scene);
         this.init();
     }
