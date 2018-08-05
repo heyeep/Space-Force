@@ -8,12 +8,21 @@ public abstract class Size {
     }
 
     public Size(int _width, int _height) {
-        this.width = _width;
-        this.height = _height;
+        if(_width >0)
+            this.width = _width;
+        else
+            this.width=0;
+        if(_height>0)
+            this.height = _height;
+        else
+            this.height=0;
     }
 
     public void setWidth(int _width) {
-        this.width = _width;
+        if(_width>0)
+            this.width = _width;
+        else
+            this.width=0;
     }
 
     public int getWidth() {
@@ -21,7 +30,10 @@ public abstract class Size {
     }
 
     public void setHeight(int _height) {
-        this.height = _height;
+        if(_height>0)
+            this.height = _height;
+        else
+            this.height=0;
     }
 
     public int getHeight() {
