@@ -45,6 +45,26 @@ public class GameScene extends Scene {
     // Huy
     Vector<Explosion> explosions = new Vector<Explosion>();
     Explosion explosionTest = new Explosion(3);
+    Explosion exp1 = new Explosion(3);
+    Explosion exp2 = new Explosion(3);
+    Explosion exp3 = new Explosion(3);
+    Explosion exp4 = new Explosion(3);
+    Explosion exp5 = new Explosion(3);
+    Explosion exp6 = new Explosion(3);
+    Explosion exp7 = new Explosion(3);
+    Explosion exp8 = new Explosion(3);
+    Explosion exp9 = new Explosion(3);
+    Explosion exp10 = new Explosion(3);
+    Explosion exp11 = new Explosion(3);
+    Explosion exp12 = new Explosion(3);
+    Explosion exp13 = new Explosion(3);
+    Explosion exp14 = new Explosion(3);
+    Explosion exp15 = new Explosion(3);
+    Explosion expPlayer = new Explosion(3);
+    
+    
+    
+    
     // endGame
 
     // Hiep
@@ -162,11 +182,10 @@ public class GameScene extends Scene {
             this.explosionTest.nextFrame();
             Explosion exp1 = explosions.firstElement();
             exp1.nextFrame();
-            // End
 
             if (areInvadersDead()) {
-                //                this.soundManager.WonGame();
-                //                winCheck();
+//                                this.soundManager.WonGame();
+//                                winCheck();
                 System.out.println("All monsters killed");
             }
 
@@ -215,10 +234,14 @@ public class GameScene extends Scene {
                 if (!invader.isDead()) {
                     if(invader.getBounds().intersects(this.bullet.getBounds()))
                         {
-                            // Huy
                             Explosion exp = explosions.firstElement();
                             exp.setLocation(invader.getX(), invader.getY());
                             exp.setActive(true);
+                            exp.nextFrame();
+                            exp.setLocation(invader.getX()+5, invader.getY()+5);
+                            exp.setActive(true);
+                            exp.nextFrame();
+                            
                             // End
 
                             // Hiep
@@ -244,6 +267,15 @@ public class GameScene extends Scene {
 
                         }
                     if(invader.getBounds().intersects(this.player.getBounds())){
+                       //huy
+                        Explosion exp = explosions.firstElement();
+                        exp.setLocation(invader.getX(), invader.getY());
+                        exp.setActive(true);
+                        exp.nextFrame();
+                        exp.setLocation(invader.getX()+5, invader.getY()+5);
+                        exp.setActive(true);
+                        exp.nextFrame();
+                        //end
                         this.player.setHp(this.player.getHp() - 2);
                     }
                 }
