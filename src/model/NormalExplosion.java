@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+//package model;
 import javax.swing.ImageIcon;
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +11,7 @@ import java.awt.*;
  *
  * @author Huy
  */
-public class NormalExplosion extends JLabel implements Explosion {
+public class NormalExplosion extends Explosion {
     private static final int MAX_FRAME=10;
     private int _frame;
     private int _internalCount;
@@ -19,6 +19,7 @@ public class NormalExplosion extends JLabel implements Explosion {
     private boolean _active;
     
     public NormalExplosion(int countBetweenFrames){
+        super(countBetweenFrames);
         this._COUNT_BETWEEN_FRAMES = countBetweenFrames;
         this.resetFrame();
         setVisible (true);

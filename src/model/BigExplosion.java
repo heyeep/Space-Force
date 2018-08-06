@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+//package model;
 import javax.swing.ImageIcon;
 import javax.swing.*;
 import java.awt.*;
@@ -11,14 +11,15 @@ import java.awt.*;
  *
  * @author Huy
  */
-public class BigExplosion extends JLabel implements Explosion {
+public class BigExplosion extends Explosion {
     private static final int MAX_FRAME=10;
     private int _frame;
     private int _internalCount;
     private int _COUNT_BETWEEN_FRAMES;
     private boolean _active;
     
-    public BigExplosion(int countBetweenFrames){
+    public BigExplosion(int countBetweenFrames) {
+        super(countBetweenFrames);
         this._COUNT_BETWEEN_FRAMES = countBetweenFrames;
         this.resetFrame();
         setVisible (true);
@@ -92,17 +93,17 @@ public class BigExplosion extends JLabel implements Explosion {
     public void initBounds2() {
         Dimension size;
         size = this.getPreferredSize();
-        this.setBounds(this.getX()+5, this.getY()+, size.width, size.height);
-        
+        this.setBounds(this.getX()+5, this.getY(), size.width, size.height);
+    }
+
     public void initBounds3() {
         Dimension size;
         size = this.getPreferredSize();
         this.setBounds(this.getX(), this.getY()+8, size.width, size.height);
     }
-       public void initBounds4() {
+    public void initBounds4() {
         Dimension size;
         size = this.getPreferredSize();
         this.setBounds(this.getX()+9, this.getY()+2, size.width, size.height);
-    }
     }
 }

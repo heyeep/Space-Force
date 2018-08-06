@@ -16,7 +16,7 @@ import java.awt.*;
  * setVisible
  * get and set int coordinates
  */
-public class Explosion extends JLabel{
+public class Explosion extends Object {
     private static final int MAX_FRAME =10;
     private int _frame;
     private int _slowFactor;
@@ -86,4 +86,13 @@ public class Explosion extends JLabel{
         this.setBounds(this.getX(), this.getY(), size.width, size.height);
     }
     // End
+
+    public void resize() {
+    }
+
+    public void draw(Graphics g) {
+    }
+
+    public void init() {
+    }
 }

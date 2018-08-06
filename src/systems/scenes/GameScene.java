@@ -61,11 +61,7 @@ public class GameScene extends Scene {
     Explosion exp14 = new Explosion(3);
     Explosion exp15 = new Explosion(3);
     Explosion expPlayer = new Explosion(3);
-    
-    
-    
-    
-    // endGame
+    // End
 
     // Hiep
     public GameScene() {
@@ -100,7 +96,7 @@ public class GameScene extends Scene {
         this.hasBegun = !this.hasBegun;
         this.bullet = new Projectile(200, 200);
         this.addPlayer();
-        this.soundManager.GameStart();
+        //        this.soundManager.GameStart();
         this.requestFocusInWindow();
 
         this.bullet.initBounds();
@@ -151,11 +147,12 @@ public class GameScene extends Scene {
     public void addPlayer() {
         // Hoang
         String username = JOptionPane.showInputDialog("Enter your name: ");
-        this.player = new Player(username);
+        this.player = new Player("Player 1");
         // End
 
         // Hiep
         this.add(this.player, new Integer(Constants.LAYER_MOB));
+        this.player.setLocation(270,330);
         // End
     }
 
@@ -196,8 +193,8 @@ public class GameScene extends Scene {
             this.moveInvaders();
             if(this.player.getLocation().getY()!=330)
                 {
-                    this.player.setX(270);
-                    this.player.setY(330);
+                    //                    this.player.setX(270);
+                    //                    this.player.setY(330);
                     this.bullet.setX(999);
                     this.bullet.setY(999);
                 }
@@ -241,7 +238,6 @@ public class GameScene extends Scene {
                             exp.setLocation(invader.getX()+5, invader.getY()+5);
                             exp.setActive(true);
                             exp.nextFrame();
-                            
                             // End
 
                             // Hiep
@@ -292,6 +288,7 @@ public class GameScene extends Scene {
             int code = e.getKeyCode();
             switch (code) {
             case KeyEvent.VK_LEFT:
+                System.out.println("Left");
                 this.player.setVelocity(-10, 0);
                 if(this.bullet.getVelY() == 0)
                     this.bullet.setVelocity(-5, 0);
@@ -299,6 +296,8 @@ public class GameScene extends Scene {
                     this.bullet.setVelocity(0,-10);
                 break;
             case KeyEvent.VK_RIGHT:
+                System.out.println("Right");
+
                 this.player.setVelocity(10, 0);
                 if(this.bullet.getVelY() == 0)
                     this.bullet.setVelocity(5, 0);
@@ -307,6 +306,7 @@ public class GameScene extends Scene {
                 break;
             case KeyEvent.VK_UP:
             case KeyEvent.VK_SPACE:
+                System.out.println("Fire");
                 this.player.setVelocity(0, 0);
                 this.bullet.setVelocity(0, -10);
                 if(this.bullet.getY() > 500)
@@ -365,11 +365,6 @@ public class GameScene extends Scene {
     public void deathCheck() {
         if (isPlayerDead()) {
             System.out.println("Player has died.");
-            /*
-             * TODO: SOUND EFFECTS
-             * -------------------
-             * A sound for when the player dies
-             */
         }
     }
 
@@ -377,11 +372,6 @@ public class GameScene extends Scene {
         if (areInvadersDead()) {
             System.out.println("You won.");
             this.restartGame();
-            /*
-             * TODO: SOUND EFFECTS
-             * -------------------
-             * A nice winning sound
-             */
         }
     }
 
@@ -424,21 +414,15 @@ public class GameScene extends Scene {
         System.out.println("Game has ended.");
         try {
             //            this.drawGameOver();
-            Thread.sleep(10000);
+            Thread.sleep(5000);
             //            this.soundManager.stopSound();
-            //            this.remove(this.gameOver);
         } catch (InterruptedException ex) {
         }
 
         if (this.restartGameAfterDeath) {
             this.restartGame();
         } else {
-            // MainScene nextScene = new MainScene(Window.DEFAULT_WIDTH,
-            //                                  Window.DEFAULT_HEIGHT);
-            // this.removeAll();
-            // this.revalidate();
-            // this.repaint();
-            // this.getWindow().switchScene(this, nextScene);
+            // TODO: Goback to main window
         }
     }
 
@@ -452,33 +436,22 @@ public class GameScene extends Scene {
         this.init();
     }
 
+    // Nonworking
     public void drawGameOver() {
         Dimension size;
-        // this.gameOver = new Hud("GAME OVER", "Game over message", 200, 50, this);
-        // this.gameOver.setFont(new Font("Tahoma", 0, 72));
-        // this.gameOver.setForeground(Color.WHITE);
-        // this.gameOver.setText(this.gameOver.getName());
-        // System.out.println(this.gameOver.getName());
-        // size = this.gameOver.getPreferredSize();
-        // //        this.gameOver.setLocation((Window.DEFAULT_WIDTH / 2) - (size.width / 2),
-        // //                               (Window.DEFAULT_HEIGHT / 2) - (size.height));
-        // this.gameOver.setBounds(this.gameOver.getX(),
-        //                         this.gameOver.getY(),
-        //                         size.width, size.height);
-        // this.add(this.gameOver, new Integer(Constants.LAYER_HUD));
-
-        // JLabel go = new JLabel("Game Over");
-        // go.setText("Game Over");
-        // size = go.getPreferredSize();
-        // go.setForeground(Color.CYAN);
-        // go.setVisible(true);
-        // go.setLocation(20,20);
-        // go.setBounds(15,
-        //              540,
-        //                100, 40);
-        // this.add(go, new Integer(Constants.LAYER_HUD));
+        this.gameOver = new Hud("GAME OVER", "Game over message", 200, 50, this);
+        this.gameOver.setFont(new Font("Tahoma", 0, 72));
+        this.gameOver.setForeground(Color.WHITE);
+        this.gameOver.setText(this.gameOver.getName());
+        size = this.gameOver.getPreferredSize();
+        //        this.gameOver.setLocation((Window.DEFAULT_WIDTH / 2) - (size.width / 2),
+        //                               (Window.DEFAULT_HEIGHT / 2) - (size.height));
+        this.gameOver.setBounds(this.gameOver.getX(),
+                                this.gameOver.getY(),
+                                size.width, size.height);
+        this.add(this.gameOver, new Integer(Constants.LAYER_HUD));
     }
-    // End
+    // end
 
     public void end() {
     }

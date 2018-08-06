@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package javaapplication10;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -37,7 +36,7 @@ public class Projectile extends Object implements ActionListener{
     }
 
     public void init() {
-        this.setImage("bullet.png");
+        this.setImage("assets/sprites/bullet.png");
         this.setVisible(true);
     }
     
