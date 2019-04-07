@@ -1,16 +1,12 @@
-* Cloning
+* Build
   #+begin_src sh :tangle yes
-  # Change directory into folder where projects are kept
-  $ cd school
   # Clone the repo
-  $ git clone https://gitlab.com/cs4310/spaceforce.git
-  #+end_src
-* Compile
-  #+begin_src sh :tangle yes
-  # Inside spaceforce/ folder
+  $ git clone git@github.com:yzmism/Space-Force.git
+  $ cd Space-Force/
+
+  # Compile
   $ ./compile
-  #+end_src
-* Run
-  #+begin_src sh :tangle yes
+
+  # Run
   $ ./run
   #+end_src
