@@ -1,10 +1,16 @@
 ## Build
-# Clone the repo
-$ git clone git@github.com:yzmism/Space-Force.git
-$ cd Space-Force
 
-# Compile
-$ ./compile
+```shell
+git clone git@github.com:yzmism/Space-Force.git
+```
 
-# Run
-$ ./run
+Compile
+```shell
+cd Space-Force
+./compile
+```
+
+Run
+```shell
+./run
+```
